@@ -1,0 +1,5741 @@
+Delivered-To: example@gmail.com
+Received: by 2002:a05:6a11:69a7:b0:6a3:4f74:d1db with SMTP id xf39csp2750259pxb;
+        Tue, 3 Mar 2026 13:47:01 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCX73NH+k35kfL1iITvild16CanHb0XuXCZwmGLN2X4w8Vnx0lwHxU8fvZVGGMgVy0ZKrZRQJlAHNEb1q9k=@gmail.com
+X-Received: by 2002:a05:622a:c9:b0:501:47d5:76b6 with SMTP id d75a77b69052e-507527bce19mr220711291cf.31.1772574421572;
+        Tue, 03 Mar 2026 13:47:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772574421; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UKuO9LqBxGFyol7w/WyDflSXM+OiUs5SKYJsFQ7tVQf0M1BrNC1OdXz6UpwUUTfenM
+         /HG8egqw+M+7jrGyrVQL33a+IWAlhBQLzwK62eOC5T/ubaQXTW/rEkOYUzL7L9PqGfSG
+         j3q6bh3R8NtxL+ySFzkGpt4avWewKuNDrmxR6xlg0cLQMwFMVV9Uk68SqapD98cZG3nI
+         dSTPvgfAGn8JiIUhPrk0yVSuukZjgh/PBh0Ond4uuWEIn6Z8+KCVj4KvnacLKjZvF3BW
+         IWUwVpBDpZqA1r57mFgPryPkE1MvEk6VH8aoL8/G3vVbIFWiwdWepUxzPfC2EXkyFW/l
+         d10A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:reply-to:message-id:list-id:to:from
+         :subject:mime-version:date:dkim-signature:dkim-signature
+         :dkim-signature;
+        bh=U+JTCjjB4b88EJ1uVVRzbyGTamnYfQIrneMqFW2s4+8=;
+        fh=SF5FpZjKcaDQeWaHNAjaTFESbgajlEjBvM1QvwcHmq0=;
+        b=LldlvNBAatETF9TTBwZ9clgTlAqoROOWcFP6yHwRQXtXFpEy4+92c/jS6f1a9AAbKG
+         FzPdC1sz1bCf1movyDcziQaLEhepdGVb1SBpubxtR5yrettYAsULqXBQHAXDok2ba5NZ
+         p0147uZgitteEywd6QDsQxYS2+LRaqqakA+MZqptMIvssokTbp9UV0fRqvMvYQOgPCUa
+         COGONXIlysHEi1DlAXZiY8UWF2bZCj00x3PTu9P/dh/EeMt5rN2wOzeKACpK+wXYLdCv
+         UwTDBnlBMTejtL1dtAFKs/PXYzJFDACGknCVpRYNBIT+eypeSs5RZjaLzfhQLDNZ79c9
+         mBWg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@icloud.com header.s=1a1hai header.b=Jfnw6MDd;
+       dkim=fail header.i=@uber.com header.s=mgm header.b=GGf1VGVt;
+       dkim=fail header.i=@mgm.uber.com header.s=pic header.b=nurkj4pf;
+       spf=pass (google.com: domain of bounce+673e3b.155b21-sedate-jades.6c=icloud.com_at_mgm_uber_com_9rd9jxykqj8244_8273aea5@icloud.com designates 57.103.86.191 as permitted sender) smtp.mailfrom="bounce+673e3b.155b21-sedate-jades.6c=icloud.com_at_mgm_uber_com_9rd9jxykqj8244_8273aea5@icloud.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=icloud.com
+Return-Path: <bounce+673e3b.155b21-sedate-jades.6c=icloud.com_at_mgm_uber_com_9rd9jxykqj8244_8273aea5@icloud.com>
+Received: from outbound.qs.icloud.com (qs-2005f-snip4-11.eps.apple.com. [57.103.86.191])
+        by mx.google.com with ESMTPS id d75a77b69052e-50744b08b1csi177409211cf.314.2026.03.03.13.47.01
+        for <example@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2026 13:47:01 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounce+673e3b.155b21-sedate-jades.6c=icloud.com_at_mgm_uber_com_9rd9jxykqj8244_8273aea5@icloud.com designates 57.103.86.191 as permitted sender) client-ip=57.103.86.191;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@icloud.com header.s=1a1hai header.b=Jfnw6MDd;
+       dkim=fail header.i=@uber.com header.s=mgm header.b=GGf1VGVt;
+       dkim=fail header.i=@mgm.uber.com header.s=pic header.b=nurkj4pf;
+       spf=pass (google.com: domain of bounce+673e3b.155b21-sedate-jades.6c=icloud.com_at_mgm_uber_com_9rd9jxykqj8244_8273aea5@icloud.com designates 57.103.86.191 as permitted sender) smtp.mailfrom="bounce+673e3b.155b21-sedate-jades.6c=icloud.com_at_mgm_uber_com_9rd9jxykqj8244_8273aea5@icloud.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=icloud.com
+Received: from outbound.qs.icloud.com (unknown [127.0.0.2])
+	by p00-icloudmta-asmtp-us-east-2d-100-percent-0 (Postfix) with ESMTPS id 93270180034A
+	for <example@gmail.com>; Tue,  3 Mar 2026 21:46:57 +0000 (UTC)
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com; s=1a1hai; t=1772574421; x=1775166421; bh=U+JTCjjB4b88EJ1uVVRzbyGTamnYfQIrneMqFW2s4+8=; h=Date:Mime-Version:Subject:From:To:Message-Id:Content-Type:X-ICLOUD-HME:x-icloud-hme; b=Jfnw6MDdmpavtnuRImwveA1rDRGo2aoqswWQRfFcKqoolQhD17vga8gFQj54/Pd077LgXGjKMpIu/tMf/dy65ioYqqAMkDGRt2VPFd1+XkaOCS3MQxCr4G+01w5FqN8sZmeI/r/Nef0xVpyCqhHBAQwSJ5Ii3ANZ/rJEPhBpifJsL6C+zechd5GU8xtJF/VS7BUJ1XJ219lvE8hxmtvr353wvPUOcPImmhYIH9SPi9ZSKVXBUma5gpI15/ZBXgQmalf+udEvze9Ih+AAtzHQL+iYLYZczWFSfKvuJ2YMWk+LVq19DzxlQ1hz+Pma4O73DkzW4TFpZGwzrU5278BlPg==
+Received: from p00-icloudmta-smtpin-us-east-2d-60-percent-16.p00-icloudmta-smtpin-vip.icloud-mail-production.svc.kube.us-east-2d.k8s.cloud.apple.com (unknown [10.112.113.19])
+	by p00-icloudmta-asmtp-us-east-2d-100-percent-0 (Postfix) with ESMTP id 9FD011800176
+	for <example@gmail.com>; Tue,  3 Mar 2026 21:46:56 +0000 (UTC)
+Received: from 175-82.static.mgm.uber.com (175-82.static.mgm.uber.com [204.220.175.82])
+	by p00-icloudmta-smtpin-us-east-2d-60-percent-16 (Postfix) with ESMTPS id 9E748C0009D
+	for <sedate-jades.6c@icloud.com>; Tue,  3 Mar 2026 21:46:54 +0000 (UTC)
+X-ICL-Info: GAtbRVYDBVFFSlVHSgQEUVUKE0oWX1gHVQoPB0UCBlZbS1RHVgEBV1tBVFcdVAsAGgwIFB0bAFVGHFUVVgEDVxdLV1oLVVIDARxLHRlUUxFbTwVKEVNaDQAdSBQXXXYPEhRIAhpVREwWFgtXHlQLFxccFFkbX1tCBxpbBB1UVxYQVAwWHFVFTEMaJh4bXFkXEVcFGBUQXgcZFltGTwUbWkdXFQMZRF8BWxQBGlZFVAcHVwUYFRBGFgdEV0BNHQ5QWwoSFgxZVUwYHgtZDVJTEFsaCRpYVFJfABsDBVZTWQ9OFAEaVkVUBwdXBRgVEFsLEURaQx0HUAYXHVFaTgcEAFhKV0NMHVdWTExLFk4BAAcUSV5DHQVQIhgYDxtWRVQHB1cFGBUO
+X-ICL-Score: 2.33303302423
+Authentication-Results: bimi.icloud.com; bimi=skipped reason="missing evidence"
+X-ARC-Info: policy=fail; arc=none; r1=-20; r2=0
+Authentication-Results: arc.icloud.com; arc=none
+Authentication-Results: dmarc.icloud.com; dmarc=pass header.from=uber.com
+X-DMARC-Policy: v=DMARC1; p=quarantine; rua=mailto:dmarc_agg@vali.email
+X-DMARC-Info: pass=pass; dmarc-policy=quarantine; s=r1; d=r1; pdomain=uber.com
+Authentication-Results: dkim-verifier.icloud.com; dkim=pass header.d=uber.com header.i=@uber.com header.b=GGf1VGVt
+Authentication-Results: dkim-verifier.icloud.com; dkim=pass header.d=mgm.uber.com header.i=@mgm.uber.com header.b=nurkj4pf
+Received-SPF: pass (spf.icloud.com: domain of bounce+673e3b.155b21-sedate-jades.6c=icloud.com@mgm.uber.com designates 204.220.175.82 as permitted sender) receiver=spf.icloud.com; client-ip=204.220.175.82; helo=175-82.static.mgm.uber.com; envelope-from=bounce+673e3b.155b21-sedate-jades.6c=icloud.com@mgm.uber.com
+Authentication-Results: spf.icloud.com; spf=pass (spf.icloud.com: domain of bounce+673e3b.155b21-sedate-jades.6c=icloud.com@mgm.uber.com designates 204.220.175.82 as permitted sender) smtp.mailfrom=bounce+673e3b.155b21-sedate-jades.6c=icloud.com@mgm.uber.com
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=uber.com; q=dns/txt; s=mgm; t=1772574414; x=1772581614;
+ h=Content-Transfer-Encoding: Content-Type: List-Unsubscribe: List-Unsubscribe-Post: Reply-To: Message-Id: List-Id: To: To: From: From: Subject: Subject: Mime-Version: Date: Sender;
+ bh=U+JTCjjB4b88EJ1uVVRzbyGTamnYfQIrneMqFW2s4+8=;
+ b=GGf1VGVttkwIxkKFhVob6otuHHhColdGtbdQLliQNTjMVe3WIzgwR8pC6O6cW0VLAPWs+54JX5knEzocTsyRLyIzUNwoiC2J0IsmMJhPkT4Hd0XU3Emp3XLTkU1CbPvEIQPM1Xq32dtA7vlxKGRLhZsZEoCTqf0GSmrsZG7Wop4=
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mgm.uber.com; q=dns/txt; s=pic; t=1772574414; x=1772581614;
+ h=Content-Transfer-Encoding: Content-Type: List-Unsubscribe: List-Unsubscribe-Post: Reply-To: Message-Id: List-Id: To: To: From: From: Subject: Subject: Mime-Version: Date: Sender;
+ bh=U+JTCjjB4b88EJ1uVVRzbyGTamnYfQIrneMqFW2s4+8=;
+ b=nurkj4pfQKnLuRtT1/ZdLoecOryKZCt6LmR4hP8MvEYxhn7N6SAhawLvXKIF96RKTfK1Lqs2QYvqhC5OqPgS8INV5ZWA+y60Me+PfR1yjvCq9OAW1PUPSBwVjzfY+gBqLpooBYGv2ffnTu3CEas5sljTptwggzxpuI+yQzIpaF4=
+X-Mailgun-Sid: WyIxMjhjYyIsInNlZGF0ZS1qYWRlcy42Y0BpY2xvdWQuY29tIiwiMTU1YjIxIl0=
+Received: by 9ff04eff08fd025e9ba2de17b3e7580f58cbe997968098abb75b7ba118b87f66 with HTTP
+ id 69a756ceafc0c105801ef021; Tue, 03 Mar 2026 21:46:54 GMT
+X-Mailgun-Sending-Ip-Pool-Name: marketing - mgm.uber.com
+X-Mailgun-Sending-Ip-Pool: 65ce97370c6b41d0b6a099e3
+X-Mailgun-Sending-Ip: 204.220.175.82
+Date: Tue, 03 Mar 2026 21:46:54 +0000
+Mime-Version: 1.0
+Subject: Let's switch it up
+From: Uber Eats <uber_at_uber_com_9rd9jxykqj8244_60412ebc@icloud.com>
+To: Hide My Email <sedate-jades.6c@icloud.com>
+X-Mailgun-Tag: 30c962cf-9b0a-4d5b-ab44-6cc8dfe4b761
+X-Mailgun-Secondary-Dkim: mgm.uber.com,pic
+X-Mailgun-Secondary-Dkim-Public: uber.com,mgm
+X-Mailgun-Rewrite-Sender-Header: false
+List-Id: <uber-eats.4110240136.uber.com>
+Message-Id: <4e7fdbd7-672b-3144-a495-a616ea084e5f@mail.uber.com>
+X-Uber-Id: 4e7fdbd7-672b-3144-a495-a616ea084e5f
+Reply-To: no-reply_at_replies_uber_com_9rd9jxykqj8244_7b3d5684@icloud.com
+X-Mailgun-Variables: {"from_email": "uber@uber.com", "mainRecipient":
+ "<sedate-jades.6c@icloud.com>", "message_type": "marketing", "message_uuid":
+ "4e7fdbd7-672b-3144-a495-a616ea084e5f", "template_uuid":
+ "52c0dc11-ea6f-4c6a-ad25-a35d6ee270c6", "to_user_uuid":
+ "c11e3aad-dfe6-41c8-a6e6-dd078ff12a11", "unique_id":
+ "4e7fdbd7-672b-3144-a495-a616ea084e5f"}
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDE3OSBTYWx0ZWRfX8XTsu92MfQRw
+ xSpkm7Bj5B62Ld79DPGnADq2QYXWM84HuqC6h1LgmGN9WXhht4GSBmIJT6J63iguDCNW6jX6qAy
+ jkQ+Qt8CqMYK8lQThjvOMEI3iGL2+oqmkR/Cd4MX0TwewJ9UkHT+24BPKblbpQjUFA/eD3WAPXP
+ IgL6XU8bAqR8YBITpbRZJgjGG9jwJIljlcrRlCQEOdCnV0w4mMOblARssk3dzdpcpSklCPfRLVM
+ 1v3eAHt6oR70zj+t+4XqOd4e6VY/gttR/v/5T0eHZfgQakqANqE98CP2/A2/lpwQZDKE0cGRS+1
+ YAgf8m878l3B/ghagAWTEYHFngPMASRujUohmlEO9W97ewzJWxSlGhdLujhUqk=
+X-Proofpoint-GUID: Ue-hh9FZ3Rv836bhnSnO7b6SQ6YfEh-2
+X-Proofpoint-ORIG-GUID: Ue-hh9FZ3Rv836bhnSnO7b6SQ6YfEh-2
+X-JNJ: AAAAAAABJbTC8/0UgkCyncI4Ml7msWgi5rqH3Fb2Eaz8FUGJmqTltJuNIPRILEQRZ8KiTXlZcQufWQOwt0Xe+jDOx5C4AlLsGNcXsXo2Bme0OPonbRIu08/tfi35jPM0OWzVsuMj9GS9FEpD+Ss5zoLm9MoU5Jg9oV6yds6SnhWdFFuremsyMqp8VJaYGw9obqYE7Z/AbQUdZLLxduIRQ2T+r+62gbUP6O80Zvg016Kmo4+Cx5I/ScllS2lEjJ2naALSnWGMTyjahN4+Nk82/zfbs/8DU5CcTAgulpavjz/GqgqcUmkIlubvoW7E4prvmiXZyv6XzAfhxpIdpuAXMdNChrkUFrG42+uggLw1uIGco075QGBoMTe72EBOt+d8mjkPCakCLojuf/EtjJTVBmFnXqqxtw24D4gJuHFyAEvuq7ERQgsUPzvVC0uK8gI6Yqb6lWWNRq0xEo5FIHGhs/7vyii86CJEKd8NzBakh+xt2T95CUV4LSI2wfSdEVbMCzT/LHz/30TPCeqIUrrIigZrVl2lPKXDj+0FN/Ckae1mAsItSh4ivHlxcg3W0CDcVtUfquoHincmFJVCWW2gbu4dd6ru/8NqLu0BiyafaUOZc1bPRIs5Y4w+R8HdSVM1lqaAxlKyMvRAvI2qOQAmnBxZCT2mIKTXqIIpuCYrnNUz51+9kzeJOsK74/C2njBLPKnAgKRElfkzL51ZxTJ+rXJxKuFRP1Sz9RL9G1S+DDmt0ERNtSQSxGDtsWPrmwDX6JoIBHQBBwofXATnzdX6+zAnZo2PbIm62gsxP3ThqWc=
+X-ICLOUD-HME: p=sedate-jades.6c@icloud.com; d=; f=example@gmail.com; r=to; s=uber@uber.com
+X-Authority-Info-Out: v=2.4 cv=LpyfC3dc c=1 sm=1 tr=0 ts=69a756d2
+ cx=c_apl:c_pps:t_out a=w0vwr1DNSLjGex3smDq1Tg==:117
+ a=aAZNCWCpVIPesZ/DdrbEnQ==:17 a=AeF81lZOedcA:10 a=IkcTkHD0fZMA:10
+ a=Yq5XynenixoA:10 a=WFvD4bZU1dUA:10 a=x7bEGLp0ZPQA:10 a=MhOHqKbi_VsA:10
+ a=VbtsY-YopDIA:10 a=DmmhNvTXW0kA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=w-CU6Wn9AAAA:8 a=PpCdiKufAAAA:8 a=Fmm6vxUjAAAA:8 a=SSmOFEACAAAA:8
+ a=nEsPprCRj5IJcsrI_GAA:9 a=7qjNcVooFzDC6ZrsPziLwYh8YKg=:19
+ a=NJeRSdbRe6oyyel0:21 a=gKO2Hq4RSVkA:10 a=frz4AuCg-hUA:10 a=_W_S_7VecoQA:10
+ a=QEXdDO2ut3YA:10 a=Ru97nHiPDtp4odn3vKgu:22 a=QI9zifXkM49GBvrM56jb:22
+ a=TrkPUeP1OD2cJwUqJqdI:22 cc=prm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-03_03,2026-03-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
+ mlxlogscore=999 adultscore=0 clxscore=1015 phishscore=0 bulkscore=0
+ mlxscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0 classifier=spam
+ authscore=0 adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2603030179
+X-JNJ: AAAAAAABE1KPhv6L+ZVQGGmWW9ggoRm1VL7tsSCP9lK02f0TeMB1IqsI46uwU5GOwaYxLWwfqBAGwE9Jh8tTMnRPxtgshmqsvvgRs9U1vwbSbd/PjBkvWGcH0h+zK7o6lM5FZ4DgroZd5oJeEPyXr1d/zbcLpv7VFowvAF5MRjTN2m++8N5OLu9ABjpfg3IDvY8037nV2vTAVw1A8h0h9QHkHJmkLRZyfiAB/K8qxSVxLnPFxbAYt/UTpUQDi9vKzdOUnXpUvn4W1jMD9SgjM9DXmZpsmeOW2XYqEyFhwsyDjXhraM75yOMGyHhtKI06UZJcJ0Gy7ubnDduq5/lHZXfQ2A60enxNR8oSg2xkIWD66vvBhdNWZJCnEzCd1CIhO4rRn873WkCVnGSC0cJPFYMpPvlHFgGEM9F4+L1GNBIoXQ/gYQpdCVe1x0tnfVR7Ne8YMA46nzMK/yDpLwCDKVxp8/d2flW4Oe1xRbZFE0ZR+7fVqPtQ4o4GsWRRN61FPrID0Yp/WCdlia4PCfVE6jrnVKyDFtJ/skK6bA+cbKe2rlX3qQGZFmQhLWkgAiu7j+go5SLIT4FObSEHgKbCdrEDSbmhn28RxC9qpeA6EMRSFJX5F8KRE+VOQBC6j7j1mIwEwyxqyKDxnodgb7JKPwV3rCmIqFjv5507DXOQzQfruKX/xyOjnSSn3rKmfILUtxXqXc1XxnBY0OSKPnu6KseaEhqSKfmVZiMXzCcnroO6cIJllJuFOkx9oZoqpBcL9H6+Os9qO9qu88+prrSMceSxVyefuf0S88yGwbxtfmk3PiiRU4iv7w5fvxZ4nLhZn8/zJEVwm5IuAQ==
+
+<!doctype html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width">
+<!--[if !mso]><!-- -->
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<!--<![endif]-->
+<!--[if gte mso 9]><xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml><![endif]-->
+
+
+
+<style>
+@media only screen and (min-width: 650px) {
+   =20
+=2Ep13_mm_offer_tag{font-size:14px!important;line-height:22px!important;}
+=2Ep13_mm_discounted_price{font-size:14=
+px!important;line-height:20px!importan=
+t;}
+=2Ep13_mm_original_price{font-size:14px=
+!important;line-height:22px!important;=
+}
+=2Ep13_mm_description{font-size:14px!im=
+portant;line-height:22px!important;}
+=2Egr_3_merchant{width:31%!important;}
+=2Egr_4_merchant{width:22%!important;}
+=2Ep2_d_h4{font-size:24px!important;line-height:30px!important;}
+=2Ep13n_deal_l_d_16{font-size:16px!important;line-height:22px!important;}
+=2Ep13n_deal_l_d_24{font-size:20px!impo=
+rtant;line-height:26px!important;paddi=
+ng:3px 6px!important;}
+}
+
+
+
+@media only screen and (max-width: 440px){
+   .m_to_50_percentage{width:50%!important;}
+  .temp_td_h5{ font-size: 16px !important; line-height: 22px !important;  }
+  .temp_display_table{display:table !important;}
+  .temp_mob_reset{padding:0!important;}
+  .mobtac {text-align: center !important;}
+  .h3_p1{font-size:20px!important;line-height:26px!important;}
+}
+</style>
+
+<style type=3D"text/css">
+@media only screen and (max-width: 640px){
+   .left_aligned{text-align:left!important;}
+   .mob_h_130{height:130px!important;}
+   .card{height:auto!important;}
+   .img_312{max-width:none!important;}
+}
+
+@media only screen and (max-width: 350px){
+   .mob_h_73{height:73px!important;}
+}
+</style>
+
+
+<style type=3D"text/css">
+a {text-decoration: none;}
+a[x-apple-data-detectors] { color: inherit !important; text-decoration: non=
+e !important; font-size: inherit !important; font-family: inherit !importan=
+t; font-weight: inherit !important; line-height: inherit !important }
+table{ mso-table-lspace: 0; mso-table-rspace: 0; border: none; border-colla=
+pse: collapse; border-spacing: 0;} p {margin: 0 !important;}
+
+=2Ebody > img {display:block;} =20
+
+=2Eshow670, .show414, .show430 {display:none;}
+
+
+@media only screen and (max-width: 640px) {
+  u + .body ul, u + .body ol { margin-left: 18px !important;}
+}
+
+@media screen and (max-width:670px) {
+   .t1of12, .t2of12, .t3of12, .t4of12, .t5of12, .t6of12, .t7of12, .t8of12, =
+=2Et9of12, .t10of12, .t11of12, .t12of12=
+, .full { width: 100% !important; max-=
+width: none !important; }
+   .show670 { display: block !important; max-height: none !important; overf=
+low:visible !important; }
+   .hide670 { display: none !important; }
+   .mobheight0{height:0 !important; line-height: 0 !important;}
+   .mobheightAuto{height:auto !important;}
+   .mpt32{padding-top:32px !important;}
+   .mpb32{padding-bottom:32px !important;}
+}
+
+@media screen and (min-width:671px) {
+   .force700{width: 700px !important;}
+   .desktar {text-align: right !important;}
+}
+
+
+@media screen and (max-width:440px) {
+
+   .show430, .show414 { display: block !important; max-height: none !import=
+ant; overflow:visible !important; }
+   .hide430, .hide414 { display: none !important; }
+
+   .mobtac{
+    text-align: center !important;
+   }
+   .mobdtable{
+    display:table !important;
+    max-width: none !important;
+   }
+
+}
+
+
+
+@font-face{font-family: 'UberMove-Medium'; src: url('https://tb-static.uber=
+=2Ecom/prod/crm/assets/fonts/UberMove/U=
+berMove-Medium.woff') format('woff'),=20=
+url('https://tb-static.uber.com/prod/crm/assets/fonts/UberMove/UberMove-Med=
+ium.ttf') format('truetype'); font-weight: normal !important; font-style: n=
+ormal !important; mso-font-alt: 'Arial'}
+
+@font-face{font-family: 'UberMoveText-Regular'; src: url('https://tb-static=
+=2Euber.com/prod/crm/assets/fonts/UberM=
+ove/UberMoveText-Regular.woff') format=
+('woff'), url('https://tb-static.uber.com/prod/crm/assets/fonts/UberMove/Ub=
+erMoveText-Regular.ttf') format('truetype'); font-weight: normal !important=
+; font-style: normal !important; mso-font-alt: 'Arial'}
+
+@font-face{font-family: 'UberMoveText-Medium'; src: url('https://tb-static.=
+uber.com/prod/crm/assets/fonts/UberMove/UberMoveText-Medium.woff') format('=
+woff'), url('https://tb-static.uber.com/prod/crm/assets/fonts/UberMove/Uber=
+MoveText-Medium.ttf') format('truetype'); font-weight: normal !important; f=
+ont-style: normal !important; mso-font-alt: 'Arial'}
+
+@font-face{font-family: 'UberMoveText-Bold'; src: url('https://tb-static.ub=
+er.com/prod/crm/assets/fonts/UberMove/UberMoveText-Bold.woff') format('woff=
+'), url('https://tb-static.uber.com/prod/crm/assets/fonts/UberMove/UberMove=
+Text-Bold.ttf') format('truetype'); font-weight: normal !important; font-st=
+yle: normal !important; mso-font-alt: 'Arial'}
+
+@font-face{font-family: 'Uber Move Text'; src: url('https://tb-static.uber.=
+com/prod/crm/assets/fonts/UberMove/UberMoveText-Bold.woff') format('woff'),=
+ url('https://tb-static.uber.com/prod/crm/assets/fonts/UberMove/UberMoveTex=
+t-Bold.ttf') format('truetype'); font-weight: bold; mso-font-alt: 'Arial'}
+
+@font-face{font-family: 'Uber Move Text'; src: url('https://tb-static.uber.=
+com/prod/crm/assets/fonts/UberMove/UberMoveText-Medium.woff') format('woff'=
+), url('https://tb-static.uber.com/prod/crm/assets/fonts/UberMove/UberMoveT=
+ext-Medium.ttf') format('truetype'); font-weight: 500; mso-font-alt: 'Arial=
+'}
+
+@font-face{font-family: 'Uber Move Text'; src: url('https://tb-static.uber.=
+com/prod/crm/assets/fonts/UberMove/UberMoveText-Regular.woff') format('woff=
+'), url('https://tb-static.uber.com/prod/crm/assets/fonts/UberMove/UberMove=
+Text-Regular.ttf') format('truetype'); font-weight: normal; mso-font-alt: '=
+Arial'}
+
+
+@font-face{font-family: 'Uber Move'; src: url('https://tb-static.uber.com/p=
+rod/crm/assets/fonts/UberMove/UberMove-Medium.woff') format('woff'), url('h=
+ttps://tb-static.uber.com/prod/crm/assets/fonts/UberMove/UberMove-Medium.tt=
+f') format('truetype'); font-weight: 500; mso-font-alt: 'Arial'}
+
+
+sup { line-height:0; font-size:70%; }
+
+</style>
+
+
+
+
+
+<style type=3D"text/css">
+
+h1, .h1, .h1l{ font-size: 60px !important; line-height: 66px !important; }
+=2Eh1xl{ font-size: 96px !important; line-height: 96px !important; }
+=2Ehsubxl {font-size: 28px !important;=20=
+line-height: 36px !important; font-fam=
+ily: 'Uber Move', 'Helvetica Neue', Helvetica, Arial, sans-serif !important=
+; font-weight: 500 !important; }
+=2Eh1bl { font-size: 50px !important; line-height: 54px !important; }
+ h2, .h2, .h2l { font-size: 44px !important; line-height: 50px !important; =
+}
+ ul, ol {padding-left:0; margin:0; margin-left:30px !important;}
+ u + .body ul, u + .body ol { margin-left: 30px !important; }
+
+
+@media screen and (max-width:440px) {
+   h1, h2, .h1, .h1l, .h2{ font-size: 34px !important; line-height: 40px !i=
+mportant;}
+   .h1xl{ font-size: 64px !important; line-height: 64px !important;}
+   .h1scale, .h1lscale {font-size: 54px !important; line-height: 60px !impo=
+rtant;}
+   .h2scale, .h2lscale {font-size: 42px !important; line-height: 48px !impo=
+rtant;}
+   .hsubxl {font-size: 24px !important; line-height: 30px !important; font-=
+family: 'Uber Move', 'Helvetica Neue', Helvetica, Arial, sans-serif !import=
+ant; font-weight: 500 !important;}
+   .h1bl { font-size: 22px !important; line-height: 28px !important; }
+   .p1scale{font-size: 16px !important;line-height: 22px !important;}
+}
+
+@media screen and (max-width:375px) {
+   .h1xl{ font-size: 64px !important; line-height: 64px !important;}
+   .hsubxl { font-size: 20px !important; line-height: 26px !important; font=
+-family: 'Uber Move Text', 'Helvetica Neue', Helvetica, Arial, sans-serif  =
+!important; font-weight: 700 !important; }
+   .h1scale {font-size: 46px !important; line-height: 52px !important;}
+   .h2scale {font-size: 40px !important; line-height: 46px !important;}
+}
+
+
+</style>
+
+
+
+
+
+
+<style type=3D"text/css">
+	.nf25 .display{ font-size: 72px !important; line-height: 80px !important; =
+}
+	.nf25 .h1{ font-size: 56px !important; line-height: 60px !important; }
+	.nf25 .h2{font-size: 40px !important;line-height: 44px !important;}
+	.nf25 .h3{font-size: 28px !important;line-height: 32px !important;}
+	p {margin: 0 !important;}
+
+	.shownotes{color:#0000ff;}
+
+	@media screen and (max-width:440px) {
+		.shownotes{color:#ff0000 !important;}
+
+		.nf25 .display{ font-size: 60px !important; line-height: 68px !important;=
+ }
+		.nf25 .h1{ font-size: 48px !important; line-height: 52px !important; }
+		.nf25 .h2{font-size: 36px !important;line-height: 40px !important;}
+		.nf25 .h3{font-size: 24px !important;line-height: 28px !important;}
+
+
+		=20
+		.bptl { padding-top: 48px !important; }
+		.bptm { padding-top: 24px !important; }
+		.bpts { padding-top: 12px !important; }
+
+		.bpbl { padding-bottom: 48px !important; }
+		.bpbm { padding-bottom: 24px !important; }
+		.bpbs { padding-bottom: 12px !important; }
+
+
+		.hide {display: none !important;}
+
+		.show {display: inline-block !important; width:auto !important; height:au=
+to !important; overflow:visible !important; float:none !important; visibili=
+ty:visible !important; border:none !important; padding-bottom:0px !importan=
+t; vertical-align: bottom !important;}
+	}
+</style>
+
+
+
+
+
+<style type=3D"text/css">
+
+		.show1 {  =20
+		  display: block !important;
+		  max-height: none !important;
+		}
+
+		=20
+		.mobfb414, .mobfb414 td{
+		  padding-left:0 !important;
+		  padding-right:0 !important;
+		  max-width:430px !important;
+		}
+		.mobmw414{  =20
+		  max-width:430px !important;
+		}
+
+</style>
+
+
+
+
+
+	<!--[if mso]>
+	<style type=3D"text/css">
+	.tCTA { text-decoration: underline !important; }
+	</style>
+	<![endif]-->
+
+
+
+<!--[if mso]>
+<style>
+=2Eol_ul{text-decoration:underline !important;}
+=2Eucta_3,.ol_ul{border-bottom:none !important;}
+</style>
+<![endif]-->
+
+
+<style>
+sup { line-height:0; font-size:70%; }
+
+ =20
+ @media screen and (max-width:414px) {
+	.mobilebgcolor{
+      background-color: #00ff00 !important;
+   }
+     .hide {display: none !important;}
+  .show {display: inline-block !important; width:auto !important; height:au=
+to !important; overflow:visible !important; float:none !important; visibili=
+ty:visible !important; border:none !important; padding-bottom:0px !importan=
+t; vertical-align: bottom !important;}
+  .show1 {
+    display: block !important;
+    max-height: none !important;
+  }
+  .mobh1 {font-size: 44px !important; line-height: 50px !important;}
+  .mobh2 {font-size: 34px !important;line-height: 40px !important;} =20
+ .p3mob {font-size:14px !important; line-height: 20px !important}
+ .h5mob{font-size: 24px !important; line-height:30px !important}
+  .h2m {font-size: 36px !important; line-height: 42px !important}
+  .width33 { max-width: 33% !important; width: 33% !important}
+  .width34 {max-width: 34% !important; max-width: 34% !important; }
+
+ =20
+}
+
+
+ =20
+</style> =20
+
+<style>
+  @media (max-width: 614px) {=20
+    .h2_h4{font-size: 28px!important; line-height: 36px !important;}
+  }
+</style>
+
+
+<style type=3D"text/css">
+  .font-40, .font-50, .font-60, .font-70 {font-size: 70px !important; line-=
+height: 70px !important}
+  .mobileSpacerNC {width: 82px !important; max-width: 82px !important}
+</style>
+
+
+<style>
+  @media screen and (max-width:650px) {
+   =20
+ .mobileSpacerNC {width: 26px !important; max-width: 26px !important}
+ .mobileSpacerTB {line-height: 32px !important; height: 32px !important; ma=
+x-width: 32px !important; width:32px !important
+   }
+    .pt0 {padding-top:0 !important}
+  .pt50 {padding-top:50px !important}
+  .pt100 {padding-top:100px !important}
+  .pt138 {padding-top:138px !important}
+  .pt143 {padding-top:143px !important} =20
+  .pt150 {padding-top:150px !important}
+  .pt192 {padding-top:192px !important}
+  .pt208 {padding-top:208px !important}
+  .pt216 {padding-top:216px !important}
+  .pt250 {padding-top:250px !important}=20
+  .pt278 {padding-top:278px !important} =20
+  .pt311 {padding-top:311px !important}=20
+  .pt322 {padding-top:322px !important}=20
+  .pt340 {padding-top:340px !important}
+  .pt350 {padding-top:350px !important}
+  .pt374 {padding-top:374px !important}
+  .pt375 {padding-top:375px !important}
+  .pt415 {padding-top:415px !important}
+  .pt430 {padding-top:430px !important}
+  .pt573 {padding-top:573px !important}
+  .pt993 {padding-top:190% !important}
+   =20
+   =20
+  .pb100 {padding-bottom:70px !important}
+    .pb200 {padding-bottom:120px !important}
+    .pb300 {padding-bottom:170px !important}
+    .pb400 {padding-bottom:250px !important}
+    .pb500 {padding-bottom:300px !important}
+  .pb2550 {padding-bottom:1390px !important}
+  .contain {background-size: contain !important;  height: auto !important;=
+=20
+      min-height: 430px !important;}
+  .cover {background-size: cover !important; height: auto !important;=20
+      min-height: 430px !important;}
+  .center-top {background-position: center top !important}
+  .left-top {background-position: left top !important}
+  .right-top {background-position: right top !important}
+  .font-40 {font-size: 40px !important; line-height: 40px !important}
+  .font-50 {font-size: 50px !important; line-height: 50px !important}
+  .font-60 {font-size: 60px !important; line-height: 60px !important}
+  .font-70 {font-size: 70px !important; line-height: 70px !important}
+  .card { height: auto !important;}
+
+  }
+ =20
+
+          @media screen and (max-width:375px) {
+    =09
+   .pt50 {padding-top:43px !important}
+  .pt100 {padding-top:88px !important}
+  .pt138 {padding-top:120px !important}
+  .pt143 {padding-top:125px !important} =20
+  .pt150 {padding-top:130px !important}
+  .pt208 {padding-top:181px !important}
+  .pt250 {padding-top:220px !important}
+  .pt311 {padding-top:270px !important}
+ .pt350 {padding-top:305px !important}
+  .pt375 {padding-top:327px !important}
+  .pt415 {padding-top:361px !important}
+  .pt993 {padding-top:192% !important}
+  .pb2550 {padding-bottom:1390px !important}
+              .pb100 {padding-bottom:50px !important}
+    .pb200 {padding-bottom:100px !important}
+    .pb300 {padding-bottom:150px !important}
+    .pb400 {padding-bottom:200px !important}
+    .pb500 {padding-bottom:250px !important}
+=2Econtain {background-size: contain !im=
+portant;  height: auto !important; }
+  .cover {background-size: cover !important; height: auto !important; }
+    }
+    @media screen and (max-width:325px) {
+    =09
+   .pt50 {padding-top:43px !important}
+  .pt100 {padding-top:88px !important}
+  .pt138 {padding-top:120px !important}
+  .pt150 {padding-top:130px !important}
+  .pt208 {padding-top:181px !important}
+  .pt250 {padding-top:220px !important}
+  .pt311 {padding-top:235px !important}
+  .pt350 {padding-top:264px !important}
+  .pt375 {padding-top:283px !important}
+  .pt415 {padding-top:361px !important}
+  .pt993 {padding-top:195% !important}
+  .pb2550 {padding-bottom:1250px !important}
+        .pb100 {padding-bottom:50px !important}
+    .pb200 {padding-bottom:100px !important}
+    .pb300 {padding-bottom:150px !important}
+    .pb400 {padding-bottom:200px !important}
+    .pb500 {padding-bottom:250px !important}
+        .contain {background-size: contain !important;  height: auto !impor=
+tant; }
+  .cover {background-size: cover !important; height: auto !important;}
+    }
+ =20
+</style>
+</head>
+
+
+
+<body class=3D"body" dir=3Dltr style=3D"-ms-text-size-adjust:100%;-webkit-t=
+ext-size-adjust:100%;background-color:#d6d6d5;margin:0;min-width:100%;paddi=
+ng:0;width:100%">
+<span id=3D"Preheader" class=3D"preheader" data-blockuuid=3D"835fd48f-a6af-=
+47a7-b369-46e4f8ecc257" style=3D"display: none; max-height: 0px; font-size:=
+ 0px; overflow: hidden; mso-hide: all;">
+Give these restaurants a try
+&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &shy; &#847; &#847;=
+ &#847; &#847; &#847; &#847; &#847; &#847; &shy;
+&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &shy; &#847; &#847;=
+ &#847; &#847; &#847; &#847; &#847; &#847; &shy;
+&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &shy; &#847; &#847;=
+ &#847; &#847; &#847; &#847; &#847; &#847; &shy;
+&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &shy; &#847; &#847;=
+ &#847; &#847; &#847; &#847; &#847; &#847; &shy;
+&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &shy; &#847; &#847;=
+ &#847; &#847; &#847; &#847; &#847; &#847; &shy;
+&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &shy; &#847; &#847;=
+ &#847; &#847; &#847; &#847; &#847; &#847; &shy;
+&#847; &#847; &#847; &#847; &#847; &#847; &#847; &#847; &shy; &#847; &#847;=
+ &#847; &#847; &#847; &#847; &#847; &#847; &shy;
+
+</span>
+<span id=3D"TemplateUUID_52c0dc11-ea6f-4c6a-ad25-a35d6ee270c6"></span>
+ =20
+<span id=3D"WorkflowUUID_be0d07c0-12f9-43cb-82e8-c97b168e1a1a"></span>  =20
+
+<style>.yahooHide{display:none!important}</style>
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"background-color:#d6d6d5;border:0;border-collapse:collapse;border-spac=
+ing:0;" bgcolor=3D"#d6d6d5" class=3D"">
+<tbody>
+<tr>
+<td align=3D"center" style=3D"display: block;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"700" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td>
+<![endif]-->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border:0;border-collapse:collapse;border-spacing:0;max-width:700px;" c=
+lass=3D"force700">
+<tbody>
+<tr>
+<td style=3D"background-color:#ffffff">
+<!-- Global header New! nf25 v 2.5 2/18/25 cesf -->
+
+
+
+
+
+
+
+
+
+
+   =20
+
+
+     =20
+
+
+
+
+
+
+
+
+
+
+=20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   =20
+   =20
+   =20
+   =20
+   =20
+
+   =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  =20
+  =20
+     =20
+     =20
+        =20
+     =20
+
+
+
+
+
+
+
+
+
+   =20
+
+
+  =20
+
+
+
+
+
+
+   =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  =20
+   =20
+  =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  Global Header 1.1 9/14/23  -->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border-collapse: collapse; width: 100%;" data-blockuuid=3D"31407d03-ec=
+f8-425a-9296-aff7ee3165df">
+ <tbody>
+
+
+  <tr>
+   <td >
+
+
+   =20
+   =20
+   =20
+   =20
+
+   =20
+
+
+
+
+
+    <!--  Default Logo  -->
+    <table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+style=3D"border-collapse: collapse; width: 100%;">
+
+    =20
+
+
+
+
+
+
+     <!--  Default Logo Center -->
+     <tbody>
+      <tr>
+       <td class=3D"outsidegutter" align=3D"left" style=3D"position:relativ=
+e; direction:ltr;text-align:left;padding: 0 14px 0 14px; background-color: =
+#fee2d4;"  background=3D"https://tb-static.uber.com/prod/crm/assets/dmbg/or=
+ange100_fee2d4.png" >
+
+
+        <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"bo=
+rder-collapse: collapse; width: 100%;">
+         <tbody>
+          <tr>
+           <td style=3D"direction:ltr;text-align:left; padding-top: 10px; p=
+adding-bottom: 13px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table width=3D"560" align=3D"center" cellpadding=3D"0" cellspa=
+cing=3D"0" border=3D"0">
+               <tr>
+                  <td>
+                     <![endif]-->
+                    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ class=3D"t10of12" align=3D"center" style=3D"Margin: 0 auto; border-collaps=
+e: collapse; max-width: 560px; width: 100%;">
+                     <tbody>
+                      <tr>
+                       <td style=3D"direction:ltr;text-align:left;padding-l=
+eft: 12px; padding-right: 12px; vertical-align: middle;">
+                        <table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" align=3D"left" style=3D"border-collapse: collapse; ta=
+ble-layout: fixed; width: 100%;">
+                         <tbody>
+                           =20
+
+
+
+  =20
+        <tr><td style=3D"direction:ltr; text-align: center; font-size:0; li=
+ne-height: 1px; padding-top: 12px;">
+        =20
+<a href=3D"https://email.mgm.uber.com/c/eJyMj8GOGyEMhp9muDnCYGBy4FBVzQP0BSK=
+DzS5tJklnmEZ9-yrbao-rPVmy_fnzLxlDKA6NZkzJhUSEZNp6W866cL_kveg6kX2WQ70t5jVTQO=
+9cmdUn69XFiIh0dCThmGqa2fRMmpoUSRCTK-CRCJiOAThiVLYzaWgT2afg8H75kl_HuG-T_zK50=
+-ROj8fjbag8tufC5E5m4X79rrXfu15HnvzXTYWHwg8W3Q6xTmR7vdx2eQP8N7PotvGLnsefu-aF=
+1586-vXlvb3vXT71rVnzRyozsrf1GF1tcCyWgSQU4EIEsdZZmlJJEc3Q5X7h8V8cXLVSEUE5NqA=
+aGVhcAPZBoqpLtkYzbud90_UfURHVMwtI0wiEdQaOGkHEprk1dIxo9mv_tev5s8l-Z_c3AAD__7=
+a5nxA" style=3D"text-decoration: none; display:inline-block;">       =20
+        <img src=3D"https://tb-static.uber.com/prod/crm/assets/Logos/Eats/r=
+ebrand/eats-logoh-147x43_2x_allblack.png" width=3D"117" height=3D"" style=
+=3D"display: block; width:100%; max-width:117px; height:auto; outline: none=
+; text-decoration: none;" border=3D"0" alt=3D"Uber Eats"></a>
+
+         </td></tr>
+
+  =20
+
+
+
+
+
+
+
+                         </tbody>
+                        </table>
+                       </td>
+                      </tr>
+                     </tbody>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+                  </td>
+               </tr>
+            </table>
+            <![endif]-->
+               </td>
+          </tr>
+         </tbody>
+        </table>
+       </td>
+      </tr>
+     </tbody>
+     <!--  close Header center logo  -->
+
+
+    =20
+
+    </table>
+   =20
+   =20
+   =20
+   </td>
+  </tr>
+ </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  =20
+     =20
+  =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  =20
+  =20
+  =20
+  =20
+  =20
+
+  =20
+  =20
+  =20
+
+  =20
+  =20
+
+   =20
+        =20
+   =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+
+ =20
+   =20
+ =20
+
+
+ =20
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- H HPC 1.4 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+ -->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"width: 100%;" data-blockuuid=3D"4b4da3a6-a0bb-466a-94ac-969cdffed5f8">
+<tbody>
+
+
+
+<tr>
+<td class=3D"outsidegutter" align=3D"left" style=3D"direction:ltr;text-alig=
+n:left;
+padding-left: 14px; padding-right: 14px; padding-top: 40px; padding-bottom:=
+ 40px; background-color:#fee2d4;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width: 100=
+%;" class=3D"">
+<tbody>
+<tr>
+<td style=3D"direction:ltr;text-align:left;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td>
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t10of12" a=
+lign=3D"center" style=3D"Margin: 0 auto;  max-width: 560px; width: 100%;">
+<tbody><tr>
+<td style=3D"direction:ltr;text-align:left;padding-left: 12px; padding-righ=
+t: 12px;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"table-layout: fixed; width: 100%; ">
+<tbody>
+
+
+
+
+
+
+
+<tr>
+<td style=3D"direction:ltr; text-align:center; padding-top:0; padding-botto=
+m:20px;">
+<h2 class=3D"" style=3D"Margin: 0; padding: 0; mso-line-height-rule: exactl=
+y; font-family: 'Uber Move', 'Helvetica Neue', Helvetica, Arial, sans-serif=
+; font-size: 34px; line-height: 40px; font-weight: 500; color: #000000;">
+  =20
+
+  =20
+
+  =20
+
+
+
+           =20
+        =20
+        =20
+
+         Restaurants you haven't tried
+  =20
+     =20
+
+
+
+</h2>
+</td>
+</tr>
+
+
+
+
+
+
+<tr>
+<td style=3D"direction:ltr;text-align:center;padding-top: 0px; padding-bott=
+om: 6px;">
+<!--[if (gte mso 9)|(IE)]>
+
+<table width=3D"250" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td align=3D"center" >
+<![endif]-->
+
+<div class=3D"" lang=3D"x-btn" style=3D"font-family: 'Uber Move Text', 'Hel=
+vetica Neue', Helvetica, Arial, sans-serif; font-weight:700; font-size: 16p=
+x; line-height: 22px;">
+
+<div class=3D"ucta_1 umig" style=3D"border-color:#4b4b4b; border-radius: 9p=
+x; border-width: 1px; border-style: solid; mso-border-style-alt: none; disp=
+lay: inline-block;">
+<a href=3D"https://email.mgm.uber.com/c/eJyMkj9z5CgQxT8NypgSfzUKFMydPOEFYzu=
+mGmjGOgsxBmSXN9jPvsV6y-HWRF08-seDfviJKWU563Biw8DVICWTXcgpGoywrNNuMRPZt3JwKX=
+YvEz8yCVYCl9Kq0LsBFYbeK--cOmo5dsskcQje-oHqgVsqmJQU5KgoaKYR-qNEFYjsm8Hh--R1e=
+qn1Vog4EX4m_IxQy6Fs18O6bK-En0_j-N5q_LEmIs7Gr0TMjW6NhKvGqUYqfnZQ8ZryJw2Ivu19=
+K0-fN2zCfHl4fDo9X07_PT0Srk1I-QOyNzfIEAsRM2tqibX1i1kQrm-Q64aZiNnl2NZu8UTMdk3=
+OKO567xijCDpQ6TRQ8FxREMprRD70TjekuO2LN9c1WVgNGozm-Z-LvH7gG-ShqjKGrYAdX3rC9W=
+7A1SVt5reV6N2ouQt0tD1Q6ZWlYKWk2rmjDyjtoNu19xqNS1vFrRIx3xUG1z_dXmqKmM0rfn6k7=
+O9EuwjLdkG33Bbc6kTEvwU9VKT_g8dy0I7IfnFr2n1LmYiHLmIpcEXTRjtFyK9Yl-36Le_74u_6=
+QV2e_mbV1emeeXUV422F-sf4niC7msxeMH8RjjEUAJ76gJpK5o4UNGrqfT8cQ2AcGOv2bXnb0dz=
+7sveJ_woAAP__jiEdpA" style=3D"background-color: #000000; border-color: #000=
+000; color:#ffffff; border-radius: 8px; border-style: solid; border-width: =
+13px 18px; display: inline-block; letter-spacing: 1px; max-width: 300px; mi=
+n-width: 100px; text-align: center; text-decoration: none; transition: all =
+0.2s ease-in;">Order now</a>
+</div>
+</div>
+
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+<!-- END BUT -->
+
+=20
+
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+   =20
+ =20
+ =20
+ =20
+ =20
+
+
+
+
+
+ =20
+ =20
+ =20
+ =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  =20
+   =20
+
+
+
+
+
+   =20
+ =20
+   =20
+   =20
+   =20
+   =20
+ =20
+
+
+
+
+
+
+
+ =20
+
+
+ =20
+
+
+
+
+
+
+
+
+
+
+
+  =20
+  =20
+  =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center" bg=
+color=3D"#ffffff" role=3D"presentation" data-blockuuid=3D"642e8912-7fc0-4a8=
+a-94de-8604106303e1">
+
+
+
+
+  <tr>
+    <td style=3D"font-size:1px;line-height:1px;vertical-align:top;width:700=
+px;max-width:100%;" valign=3D"top" align=3D"center">
+    <!--[if (gte mso 9)|(IE)]>
+    <table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0=
+" role=3D"presentation" style=3D"width:700px;background-color:#ffffff;">
+    <tr>
+    <td style=3D"font-size:1px;line-height:1px;" align=3D"center">
+    <![endif]-->
+   =20
+   =20
+   =20
+   =20
+
+
+
+
+
+
+  =20
+    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:=
+ 100%;" class=3D"">
+
+       =20
+       =20
+
+      =20
+         <tr>
+<td style=3D"direction:ltr;text-align:left;text-align:center; padding-botto=
+m:0px ">
+   <div class=3D"hide414">
+  =20
+   <img src=3D"https://tb-static.uber.com/prod/crm/email/2024/09/cf_eaterdi=
+gest/em01_version03_animation01_d_2x.gif" width=3D"700" height=3D"" style=
+=3D"-ms-interpolation-mode: bicubic; clear: both; display: block; height: a=
+uto; max-width: 700px; outline: none; text-decoration: none; width: 100%;  =
+color:#000000;margin: 0 auto" border=3D"0" alt=3D"Uber Eats graphic"> =20
+   </div>
+   <!--[if !mso 9]><!--><div class=3D"show414" style=3D"mso-hide:all;displa=
+y:none;max-height:0px;overflow:hidden; padding:0;">
+  =20
+   <img src=3D"https://tb-static.uber.com/prod/crm/email/2024/09/cf_eaterdi=
+gest/em01_version03_animation01_m_2x.gif" width=3D"414" height=3D"" style=
+=3D"-ms-interpolation-mode: bicubic; clear: both; display: block; height: a=
+uto; max-width: 430px; outline: none; text-decoration: none; width: 100%;  =
+color:#000000;margin: 0 auto" border=3D"0" alt=3D"Uber Eats graphic"> =20
+   </div><!--<![endif]-->
+</td>   =20
+</tr>     =20
+     =20
+
+
+    </table>
+  =20
+
+      <!--[if (gte mso 9)|(IE)]>
+      </td>
+      </tr>
+      </table>
+      <![endif]-->
+    </td>
+  </tr>
+
+</table>
+
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border:0;border-collapse:collapse;border-spacing:0;margin:auto;max-wid=
+th:700px;" class=3D"">
+<tbody>
+<tr>
+<td align=3D"center">
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"background-color:#fff;border:0;border-collapse:collapse;border-spacing=
+:0;margin:auto;" bgcolor=3D"#ffffff" class=3D"basetable">
+<tbody>
+<tr>
+<td align=3D"center">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"700" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td align=3D"center">
+<![endif]-->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"basetable" style=3D"border:0;border-collapse:collapse;border-spacing:0=
+;">
+<tbody>
+<tr>
+<td align=3D"center" style=3D"background-color:#ffffff">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"basetable" style=3D"border:0;border-collapse:collapse;border-spacing:0=
+;">
+<tbody>
+<tr>
+<td>
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"100%" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0">
+<tr>
+<td>
+<![endif]-->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" clas=
+s=3D"basetable" style=3D"border:0;border-collapse:collapse;border-spacing:0=
+;">
+<tbody>
+<tr>
+<td>
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"100%" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" =
+border=3D"0">
+<tr>
+<td>
+<![endif]-->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border:0;border-collapse:collapse;border-spacing:0;" class=3D"">
+<tbody>
+<tr>
+<td>
+
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+
+
+
+
+
+
+
+
+
+ =20
+
+
+
+
+ =20
+
+
+ =20
+
+
+ =20
+   =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+   =20
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+ =20
+
+
+
+
+
+
+
+
+
+ =20
+     =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+
+ =20
+
+
+
+
+
+
+               =20
+     =20
+     =20
+     =20
+
+     =20
+     =20
+     =20
+     =20
+     =20
+
+     =20
+     =20
+
+     =20
+     =20
+   =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+   =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+   =20
+ =20
+   =20
+ =20
+   =20
+ =20
+   =20
+ =20
+   =20
+ =20
+   =20
+   =20
+   =20
+ =20
+ =20
+    =20
+      =20
+    =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+ =20
+   =20
+   =20
+
+ =20
+   =20
+
+   =20
+     =20
+
+   =20
+   =20
+     =20
+     =20
+
+     =20
+
+     =20
+           =20
+             =20
+
+             =20
+             =20
+                           =20
+                   =20
+                    =20
+     =20
+
+ =20
+ =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+
+   =20
+
+   =20
+   =20
+
+   =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+     =20
+       =20
+         =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+         =20
+           =20
+             =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+ =20
+
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+   =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+    =20
+      =20
+    =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+ =20
+   =20
+   =20
+
+ =20
+   =20
+
+   =20
+     =20
+
+   =20
+   =20
+     =20
+     =20
+
+     =20
+
+     =20
+           =20
+             =20
+
+             =20
+             =20
+                           =20
+                   =20
+                    =20
+     =20
+
+ =20
+ =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+
+   =20
+
+   =20
+   =20
+
+   =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+     =20
+       =20
+         =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+         =20
+           =20
+             =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+ =20
+
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+   =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+    =20
+      =20
+    =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+ =20
+   =20
+   =20
+
+ =20
+   =20
+
+   =20
+     =20
+
+   =20
+   =20
+     =20
+     =20
+
+     =20
+
+     =20
+           =20
+             =20
+
+             =20
+             =20
+                           =20
+                   =20
+                    =20
+     =20
+
+ =20
+ =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+
+   =20
+
+   =20
+   =20
+
+   =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+     =20
+       =20
+         =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+         =20
+           =20
+             =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+ =20
+
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+   =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+    =20
+      =20
+    =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+ =20
+   =20
+   =20
+
+ =20
+   =20
+
+   =20
+     =20
+
+   =20
+   =20
+     =20
+     =20
+
+     =20
+
+     =20
+           =20
+             =20
+
+             =20
+             =20
+                           =20
+                   =20
+                    =20
+     =20
+
+ =20
+ =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+
+   =20
+
+   =20
+   =20
+
+   =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+     =20
+       =20
+         =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+         =20
+           =20
+             =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+ =20
+
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+   =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+    =20
+      =20
+    =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+ =20
+   =20
+   =20
+
+ =20
+   =20
+
+   =20
+     =20
+
+   =20
+   =20
+     =20
+     =20
+
+     =20
+
+     =20
+           =20
+             =20
+
+             =20
+             =20
+                           =20
+                   =20
+                    =20
+     =20
+
+ =20
+ =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+
+   =20
+
+   =20
+   =20
+
+   =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+     =20
+       =20
+         =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+         =20
+           =20
+             =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+ =20
+
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+   =20
+     =20
+   =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+    =20
+      =20
+    =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+ =20
+   =20
+   =20
+
+ =20
+   =20
+
+   =20
+     =20
+
+   =20
+   =20
+     =20
+     =20
+
+     =20
+
+     =20
+           =20
+             =20
+
+             =20
+             =20
+                           =20
+                   =20
+                    =20
+     =20
+
+ =20
+ =20
+
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+
+   =20
+
+   =20
+   =20
+
+   =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+     =20
+       =20
+         =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+         =20
+           =20
+             =20
+           =20
+           =20
+         =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+     =20
+       =20
+     =20
+   =20
+ =20
+
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+ =20
+
+
+
+ =20
+   =20
+ =20
+
+ =20
+
+
+
+
+
+
+
+
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border: none; border-collapse: collapse; border-spacing: 0; mso-table-=
+lspace: 0; mso-table-rspace: 0; width: 100%;" class=3D"" bgcolor=3D"#ffffff=
+" data-blockuuid=3D"88172a13-b929-4289-ba0c-53f39ec22f67" >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr>
+  <td width=3D"402" style=3D"font-family: 'Uber Move Text', 'Helvetica Neue=
+', Helvetica, Arial, sans-serif;text-decoration:none;font-weight: 400;font-=
+size:1px;line-height:1px;mso-line-height-rule:exactly;padding: 0px; padding=
+-top: 18px;" align=3D"left" >
+      &nbsp;
+  </td>
+</tr>
+
+<tr>
+<td style=3D"padding-top: 0px; padding-left: 26px; padding-right: 26px;">
+  <table width=3D"536" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" ali=
+gn=3D"center" class=3D"full" role=3D"presentation">
+ =20
+ =20
+
+ =20
+
+ =20
+
+
+
+  </table>
+</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+<tr>
+<td align=3D"left" class=3D"outsidegutter" style=3D"direction:ltr; text-ali=
+gn: left; padding-left:14px; padding-right:14px; padding-top:0; padding-bot=
+tom: 0px;"><!-- Begin Row 1 -->
+
+ =20
+ =20
+ =20
+
+
+
+
+
+   =20
+   =20
+
+         =20
+
+
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+ =20
+
+
+  <!-- restaurant -->
+  <!--[if (gte mso 9)|(IE)]>
+  <table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0">
+    <tr>
+        <td>
+          <![endif]-->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+t10of12" align=3D"center" style=3D"Margin: 0 auto; border-collapse: collaps=
+e; max-width: 560px; width: 100%;">
+            <tbody>
+              <tr><td style=3D"direction:ltr;text-align:left;padding-left: =
+12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px;" valign=
+=3D"top">
+
+  <!-- restaurant -  left -->
+
+  <!--[if (gte mso 9)|(IE)]>
+  <table width=3D"256" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0">
+  <tr>
+  <td>
+  <![endif]-->
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t6of=
+12 mwidth" align=3D"left" style=3D"border: none; border-collapse: collapse;=
+ border-spacing: 0; max-width: 256px; mso-table-lspace: 0; mso-table-rspace=
+: 0; width: 100%;">
+      <tbody><tr>
+      <td style=3D"direction: ltr; text-align: left; padding-left: 0px; pad=
+ding-right: 0px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+          <tr>
+          <td style=3D"direction:ltr;text-align:left;">
+
+        =20
+
+ =20
+    <!--[if !mso]><!-- -->
+    <!-- rate  mt_2023/10/09 -->=20
+    <div style=3D"height:15px; min-height:15px;">&nbsp;</div>
+
+    <!-- close  rate -->
+    <!--<![endif]-->
+ =20
+                     =20
+
+              <a disable-tracking=3Dtrue clicktracking=3D"off" data-msys-cl=
+icktrack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2=
+F%2Fstore%2Fbrowse%3FstoreUUID%3D7d20e870-fb57-46cd-9a09-0175bc142bf9&amp;_=
+fallback_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Fdoenji-korean-=
+food-gorczewska%2FfSDocPtXRs2aCQF1vBQr-Q&amp;~customer_keyword=3D4e7fdbd7-6=
+72b-3144-a495-a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_m=
+p%3D0%26ds_sp%3D0" style=3D"text-decoration:none;" target=3D"_blank">
+              <table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" style=3D"border: none; border-collapse: collapse; mso-table-lspac=
+e: 0; mso-table-rspace: 0; width: 100%;">
+              <tbody><tr>
+              <td class=3D"" align=3D"left" style=3D"direction:ltr;text-ali=
+gn:left;border-radius: 10px;">
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border: none; border-collapse: collapse; mso-table-lspace: 0; mso-table=
+-rspace: 0; width: 100%;" class=3D"">
+              <tbody><tr>
+              <td valign=3D"top" width=3D"256" height=3D"205" background=3D=
+"https://tb-static.uber.com/prod/image-proc/processed_images/6798cb2fc8d655=
+e476f9d77f9b9c63b9/1130cd428ee928d351d26efda1178b20.jpeg" style=3D"directio=
+n:ltr;text-align:left;background-image:url('https://tb-static.uber.com/prod=
+/image-proc/processed_images/6798cb2fc8d655e476f9d77f9b9c63b9/1130cd428ee92=
+8d351d26efda1178b20.jpeg'); border-radius: 10px; line-height: 1px; font-siz=
+e: 1px; background-size: cover; background-position: center center; height:=
+ auto; background-repeat:no-repeat; background-color: #ffffff;"> =20
+
+
+                         =20
+
+              <img src=3D"https://tb-static.uber.com/prod/crm/email/2024/04=
+/mt_p13n/spacer_256x205.png" width=3D"256" height=3D"205" style=3D"display:=
+block; width: 100%; max-width:100%; height:auto;" border=3D"0" alt=3D"space=
+r">
+
+
+              <!--[if gte mso 9]>
+              </div>
+              </v:textbox>
+              </v:rect>
+              <![endif]-->
+              </td>
+              </tr>
+              </tbody></table>
+              </td>
+              </tr>
+              </tbody>
+              </table>
+
+              <img src=3D"https://tb-static.uber.com/prod/crm/assets/spacer=
+/transparent-1x1.png" width=3D"1" height=3D"1" style=3D"display:block; widt=
+h:1px;height:1px;max-width: 1px; " border=3D"0" alt=3D"spacer">
+              </a>
+
+          </td>
+          </tr>
+          </tbody>
+          </table>
+      </td>
+      </tr>
+
+      <tr>
+      <td style=3D"direction: ltr; text-align: left; padding-top: 15px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+         =20
+          <tr>
+          <td class=3D"ftrLegal" style=3D"direction:ltr;text-align:left;col=
+or: #000000; font-family: 'Uber Move Text', 'Helvetica Neue',  Helvetica, A=
+rial, sans-serif; font-size: 12px; font-weight: normal; line-height: 20px; =
+padding-top: 0px;">
+            <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clickt=
+rack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2F=
+store%2Fbrowse%3FstoreUUID%3D7d20e870-fb57-46cd-9a09-0175bc142bf9&amp;_fall=
+back_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Fdoenji-korean-food=
+-gorczewska%2FfSDocPtXRs2aCQF1vBQr-Q&amp;~customer_keyword=3D4e7fdbd7-672b-=
+3144-a495-a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D=
+0%26ds_sp%3D0" style=3D"text-decoration: none;color: #9F6402">   =20
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"initial" align=3D"left" style=3D"border: none; border-collapse: collaps=
+e; border-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspac=
+e: 0; table-layout: fixed; width: initial;">
+                <tr>
+                <td valign=3D"top" style=3D"direction:ltr;text-align:left;p=
+adding-right: 2px; padding-top:2px;">
+                 =20
+                 =20
+<img src=3D"https://tb-static.uber.com/prod/crm/email/2025/02/tam_u1/v01_lo=
+ck_icon01_2x.png" width=3D"12" height=3D"15" style=3D"display:inline-block;=
+width:12px;height:15px;max-width:12px;outline:none;text-decoration:none;mar=
+gin:-1px;margin-left:1px;padding-right:4px;" border=3D"0" alt=3D"Uber One L=
+ock Icon"><!--[if (gte mso 9)|(IE)]>&nbsp;<![endif]-->
+
+                 =20
+                </td>
+                <td class=3D"ftrLegal" valign=3D"middle" style=3D"direction=
+:ltr;text-align:left;color: #9F6402; font-family: 'Uber Move Text', 'Helvet=
+ica Neue',  Helvetica, Arial, sans-serif; font-size: 16px; font-weight: nor=
+mal; line-height: 20px;">
+                PLN=C2=A00 Delivery Fee
+                </td>
+                </tr>
+              </table>
+            </a>
+          </td>
+          </tr>
+           =20
+
+          <tr>
+          <td style=3D"direction:ltr;text-align: left;padding-top: 3px; pad=
+ding-bottom: 10px; padding-left: 0px; padding-right: 0px">
+         =20
+          <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clicktra=
+ck=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2Fst=
+ore%2Fbrowse%3FstoreUUID%3D7d20e870-fb57-46cd-9a09-0175bc142bf9&amp;_fallba=
+ck_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Fdoenji-korean-food-g=
+orczewska%2FfSDocPtXRs2aCQF1vBQr-Q&amp;~customer_keyword=3D4e7fdbd7-672b-31=
+44-a495-a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D0%=
+26ds_sp%3D0" style=3D"text-decoration: none;">
+          <span class=3D"p2" title=3D"Doenji Korean Food" style=3D"color: #=
+000000; font-family: 'Uber Move Text', 'Helvetica Neue', Helvetica, Arial, =
+sans-serif; font-size: 16px; font-weight: normal; line-height: 22px; paddin=
+g-bottom: 7px; padding-top: 7px;">
+
+                    <div class=3D"hide414">
+                      Doenji Korean Food<br>
+                    </div>
+                    <div class=3D"show414" style=3D"mso-hide:all;display:no=
+ne;max-height:0px;overflow:hidden;">       =20
+                            <div style=3D"overflow: hidden;
+                            text-overflow: ellipsis;
+                            -webkit-line-clamp: 2;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;">
+
+                             =20
+                                Doenji Korean Food=20
+                               =20
+                             =20
+                            </div>
+                    </div>       =20
+                             =20
+
+          </span>         =20
+
+         =20
+         =20
+
+         =20
+          <div class=3D"ucta_3" style=3D"border-bottom:1px solid #4b4b4b;di=
+splay:inline-block;padding-top:4px;">
+          <div class=3D"ol_ul" style=3D"border-bottom:1px solid #000000;pad=
+ding-bottom:4px;color:#000000;display:inline-block;font-family:'Uber Move T=
+ext','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight=
+:normal;line-height:22px;">
+          Order now
+          </div>
+          </div>
+
+          </a>
+          </td>
+          </tr>
+          </tbody></table>
+      </td>
+      </tr>
+      </tbody>
+      </table>
+  <!--[if (gte mso 9)|(IE)]>
+  </td>
+  </tr>
+  </table>
+  <![endif]-->                     =20
+  <!-- end restaurant -  left -->
+</td>
+
+
+
+    =20
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+  <td style=3D"direction:ltr;text-align:left;padding-left: 12px; padding-ri=
+ght: 12px; padding-top: 10px; padding-bottom: 10px;" valign=3D"top">
+
+  <!-- restaurant -  left -->
+  <!--[if (gte mso 9)|(IE)]>
+  <table width=3D"256" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0">
+  <tr>
+  <td>
+  <![endif]-->
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t6of=
+12 mwidth" align=3D"left" style=3D"border: none; border-collapse: collapse;=
+ border-spacing: 0; max-width: 256px; mso-table-lspace: 0; mso-table-rspace=
+: 0; width: 100%;">
+      <tbody><tr>
+      <td style=3D"direction: ltr; text-align: left; padding-left: 0px; pad=
+ding-right: 0px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+          <tr>
+          <td style=3D"direction:ltr;text-align:left;">
+
+ =20
+ =20
+    <!--[if !mso]><!-- -->
+    <!-- rate  mt_2023/10/09 -->=20
+    <div style=3D"height:15px; min-height:15px;">&nbsp;</div>
+
+    <!-- close  rate -->
+    <!--<![endif]-->
+ =20
+    =20
+
+
+              <a disable-tracking=3Dtrue clicktracking=3D"off" data-msys-cl=
+icktrack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2=
+F%2Fstore%2Fbrowse%3FstoreUUID%3D82a89dbb-9174-509e-bedb-0a3d324f9200&amp;_=
+fallback_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Fmiss-kimchi%2F=
+gqidu5F0UJ6-2wo9Mk-SAA&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a495-a616=
+ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D1%26ds_sp%3D0"=
+ style=3D"text-decoration:none;" target=3D"_blank">
+              <table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" style=3D"border: none; border-collapse: collapse; mso-table-lspac=
+e: 0; mso-table-rspace: 0; width: 100%;">
+              <tbody><tr>
+              <td class=3D"" align=3D"left" style=3D"direction:ltr;text-ali=
+gn:left;border-radius: 10px;">
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border: none; border-collapse: collapse; mso-table-lspace: 0; mso-table=
+-rspace: 0; width: 100%;" class=3D"">
+              <tbody><tr>
+              <td valign=3D"top" width=3D"256" height=3D"205" background=3D=
+"https://tb-static.uber.com/prod/image-proc/processed_images/8927001bc0f635=
+b03de2d666bdd7e8d7/1130cd428ee928d351d26efda1178b20.jpeg" style=3D"directio=
+n:ltr;text-align:left;background-image:url('https://tb-static.uber.com/prod=
+/image-proc/processed_images/8927001bc0f635b03de2d666bdd7e8d7/1130cd428ee92=
+8d351d26efda1178b20.jpeg'); border-radius: 10px; line-height: 1px; font-siz=
+e: 1px; background-size:cover; background-position: center center; height:a=
+uto; background-repeat: no-repeat; background-color: #ffffff;">
+
+
+             =20
+              <img src=3D"https://tb-static.uber.com/prod/crm/email/2024/04=
+/mt_p13n/spacer_256x205.png" width=3D"256" height=3D"205" style=3D"display:=
+block; width: 100%; max-width:100%; height:auto;" border=3D"0" alt=3D"space=
+r">
+
+              <!--[if gte mso 9]>
+              </div>                         =20
+              </v:textbox>
+              </v:rect>
+              <![endif]-->
+              </td>
+              </tr>
+              </tbody></table>
+              </td>
+              </tr>
+              </tbody></table>
+              <img src=3D"https://tb-static.uber.com/prod/crm/assets/spacer=
+/transparent-1x1.png" width=3D"1" height=3D"1" style=3D"display:block; widt=
+h:1px;height:1px;max-width: 1px; " border=3D"0" alt=3D"spacer">
+              </a>
+
+          </td>
+          </tr>
+          </tbody>
+          </table>
+      </td>
+      </tr>
+
+      <tr>
+      <td style=3D"direction: ltr; text-align: left; padding-top: 15px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+         =20
+          <tr>
+          <td class=3D"ftrLegal" style=3D"direction:ltr;text-align:left;col=
+or: #000000; font-family: 'Uber Move Text', 'Helvetica Neue',  Helvetica, A=
+rial, sans-serif; font-size: 12px; font-weight: normal; line-height: 20px; =
+padding-top: 0px;">
+            <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clickt=
+rack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2F=
+store%2Fbrowse%3FstoreUUID%3D82a89dbb-9174-509e-bedb-0a3d324f9200&amp;_fall=
+back_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Fmiss-kimchi%2Fgqid=
+u5F0UJ6-2wo9Mk-SAA&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a495-a616ea08=
+4e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D1%26ds_sp%3D0" sty=
+le=3D"text-decoration: none;color: #9F6402">
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"initial" align=3D"left" style=3D"border: none; border-collapse: collaps=
+e; border-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspac=
+e: 0; table-layout: fixed; width: initial;">
+                <tr>
+                <td valign=3D"top" style=3D"direction:ltr;text-align:left;p=
+adding-right: 2px; padding-top:2px;">
+                 =20
+                 =20
+<img src=3D"https://tb-static.uber.com/prod/crm/email/2025/02/tam_u1/v01_lo=
+ck_icon01_2x.png" width=3D"12" height=3D"15" style=3D"display:inline-block;=
+width:12px;height:15px;max-width:12px;outline:none;text-decoration:none;mar=
+gin:-1px;margin-left:1px;padding-right:4px;" border=3D"0" alt=3D"Uber One L=
+ock Icon"><!--[if (gte mso 9)|(IE)]>&nbsp;<![endif]-->
+
+                 =20
+                </td>
+                <td class=3D"ftrLegal" valign=3D"middle" style=3D"direction=
+:ltr;text-align:left;color: #9F6402; font-family: 'Uber Move Text', 'Helvet=
+ica Neue',  Helvetica, Arial, sans-serif; font-size: 16px; font-weight: nor=
+mal; line-height: 20px;">
+                PLN=C2=A00 Delivery Fee
+                </td>
+                </tr>
+              </table>
+            </a>
+          </td>
+          </tr>
+           =20
+
+          <tr>
+          <td style=3D"direction:ltr;text-align: left;padding-top: 3px; pad=
+ding-bottom: 10px; padding-left: 0px; padding-right: 0px">
+          <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clicktra=
+ck=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2Fst=
+ore%2Fbrowse%3FstoreUUID%3D82a89dbb-9174-509e-bedb-0a3d324f9200&amp;_fallba=
+ck_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Fmiss-kimchi%2Fgqidu5=
+F0UJ6-2wo9Mk-SAA&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a495-a616ea084e=
+5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D1%26ds_sp%3D0" style=
+=3D"text-decoration: none;">
+          <span class=3D"p2" title=3D"Miss Kimchi" style=3D"color: #000000;=
+ font-family: 'Uber Move Text', 'Helvetica Neue', Helvetica, Arial, sans-se=
+rif; font-size: 16px; font-weight: normal; line-height: 22px; padding-botto=
+m: 7px; padding-top: 7px;">
+
+<div class=3D"hide414">
+  Miss Kimchi<br>
+</div>
+<div class=3D"show414" style=3D"mso-hide:all;display:none;max-height:0px;ov=
+erflow:hidden;">       =20
+        <div style=3D"overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;">
+
+         =20
+            Miss Kimchi=20
+           =20
+         =20
+        </div>
+</div>
+
+
+          </span>
+
+         =20
+         =20
+         =20
+
+         =20
+          <div class=3D"ucta_3" style=3D"border-bottom:1px solid #4b4b4b;di=
+splay:inline-block;padding-top:4px;">
+          <div class=3D"ol_ul" style=3D"border-bottom:1px solid #000000;pad=
+ding-bottom:4px;color:#000000;display:inline-block;font-family:'Uber Move T=
+ext','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight=
+:normal;line-height:22px;">
+          Order now
+          </div>
+          </div>
+
+          </span>
+          </a>
+          </td>
+          </tr>
+
+          </tbody>
+          </table>
+      </td>
+      </tr>
+      </tbody>
+  </table>
+  <!--[if (gte mso 9)|(IE)]>
+  </td>
+  </tr>
+  </table>
+  <![endif]-->                     =20
+
+  <!-- end restaurant -  left -->
+
+</td></tr>
+          </tbody></table>
+          <!--[if (gte mso 9)|(IE)]>
+        </td>
+    </tr>
+  </table>
+  <![endif]-->                     =20
+  <!-- end restaurant -->
+
+
+<!-- END Row 1 -->
+
+<!-- Begin Row 2 -->
+
+ =20
+ =20
+ =20
+
+
+
+
+
+   =20
+   =20
+
+         =20
+
+
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+ =20
+
+
+  <!-- restaurant -->
+  <!--[if (gte mso 9)|(IE)]>
+  <table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0">
+    <tr>
+        <td>
+          <![endif]-->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+t10of12" align=3D"center" style=3D"Margin: 0 auto; border-collapse: collaps=
+e; max-width: 560px; width: 100%;">
+            <tbody>
+              <tr><td style=3D"direction:ltr;text-align:left;padding-left: =
+12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px;" valign=
+=3D"top">
+
+  <!-- restaurant -  left -->
+
+  <!--[if (gte mso 9)|(IE)]>
+  <table width=3D"256" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0">
+  <tr>
+  <td>
+  <![endif]-->
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t6of=
+12 mwidth" align=3D"left" style=3D"border: none; border-collapse: collapse;=
+ border-spacing: 0; max-width: 256px; mso-table-lspace: 0; mso-table-rspace=
+: 0; width: 100%;">
+      <tbody><tr>
+      <td style=3D"direction: ltr; text-align: left; padding-left: 0px; pad=
+ding-right: 0px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+          <tr>
+          <td style=3D"direction:ltr;text-align:left;">
+
+        =20
+
+ =20
+    <!--[if !mso]><!-- -->
+    <!-- rate  mt_2023/10/09 -->=20
+    <div style=3D"height:15px; min-height:15px;">&nbsp;</div>
+
+    <!-- close  rate -->
+    <!--<![endif]-->
+ =20
+                     =20
+
+              <a disable-tracking=3Dtrue clicktracking=3D"off" data-msys-cl=
+icktrack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2=
+F%2Fstore%2Fbrowse%3FstoreUUID%3D0d0ae62a-76ec-47cb-b579-0d3cafe25cd4&amp;_=
+fallback_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Frico-gie%25C5%=
+2582dowa%2FDQrmKnbsR8u1eQ08r-Jc1A&amp;~customer_keyword=3D4e7fdbd7-672b-314=
+4-a495-a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D2%2=
+6ds_sp%3D0" style=3D"text-decoration:none;" target=3D"_blank">
+              <table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" style=3D"border: none; border-collapse: collapse; mso-table-lspac=
+e: 0; mso-table-rspace: 0; width: 100%;">
+              <tbody><tr>
+              <td class=3D"" align=3D"left" style=3D"direction:ltr;text-ali=
+gn:left;border-radius: 10px;">
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border: none; border-collapse: collapse; mso-table-lspace: 0; mso-table=
+-rspace: 0; width: 100%;" class=3D"">
+              <tbody><tr>
+              <td valign=3D"top" width=3D"256" height=3D"205" background=3D=
+"https://tb-static.uber.com/prod/image-proc/processed_images/39275cab3c5bed=
+14ff89273d9123074e/a70f5c9df440d10213e93244e9eb7cad.jpeg" style=3D"directio=
+n:ltr;text-align:left;background-image:url('https://tb-static.uber.com/prod=
+/image-proc/processed_images/39275cab3c5bed14ff89273d9123074e/a70f5c9df440d=
+10213e93244e9eb7cad.jpeg'); border-radius: 10px; line-height: 1px; font-siz=
+e: 1px; background-size: cover; background-position: center center; height:=
+ auto; background-repeat:no-repeat; background-color: #ffffff;"> =20
+
+
+                         =20
+
+              <img src=3D"https://tb-static.uber.com/prod/crm/email/2024/04=
+/mt_p13n/spacer_256x205.png" width=3D"256" height=3D"205" style=3D"display:=
+block; width: 100%; max-width:100%; height:auto;" border=3D"0" alt=3D"space=
+r">
+
+
+              <!--[if gte mso 9]>
+              </div>
+              </v:textbox>
+              </v:rect>
+              <![endif]-->
+              </td>
+              </tr>
+              </tbody></table>
+              </td>
+              </tr>
+              </tbody>
+              </table>
+
+              <img src=3D"https://tb-static.uber.com/prod/crm/assets/spacer=
+/transparent-1x1.png" width=3D"1" height=3D"1" style=3D"display:block; widt=
+h:1px;height:1px;max-width: 1px; " border=3D"0" alt=3D"spacer">
+              </a>
+
+          </td>
+          </tr>
+          </tbody>
+          </table>
+      </td>
+      </tr>
+
+      <tr>
+      <td style=3D"direction: ltr; text-align: left; padding-top: 15px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+         =20
+          <tr>
+          <td class=3D"ftrLegal" style=3D"direction:ltr;text-align:left;col=
+or: #000000; font-family: 'Uber Move Text', 'Helvetica Neue',  Helvetica, A=
+rial, sans-serif; font-size: 12px; font-weight: normal; line-height: 20px; =
+padding-top: 0px;">
+            <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clickt=
+rack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2F=
+store%2Fbrowse%3FstoreUUID%3D0d0ae62a-76ec-47cb-b579-0d3cafe25cd4&amp;_fall=
+back_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Frico-gie%25C5%2582=
+dowa%2FDQrmKnbsR8u1eQ08r-Jc1A&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a4=
+95-a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D2%26ds_=
+sp%3D0" style=3D"text-decoration: none;color: #9F6402">   =20
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"initial" align=3D"left" style=3D"border: none; border-collapse: collaps=
+e; border-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspac=
+e: 0; table-layout: fixed; width: initial;">
+                <tr>
+                <td valign=3D"top" style=3D"direction:ltr;text-align:left;p=
+adding-right: 2px; padding-top:2px;">
+                 =20
+                 =20
+<img src=3D"https://tb-static.uber.com/prod/crm/email/2025/02/tam_u1/v01_lo=
+ck_icon01_2x.png" width=3D"12" height=3D"15" style=3D"display:inline-block;=
+width:12px;height:15px;max-width:12px;outline:none;text-decoration:none;mar=
+gin:-1px;margin-left:1px;padding-right:4px;" border=3D"0" alt=3D"Uber One L=
+ock Icon"><!--[if (gte mso 9)|(IE)]>&nbsp;<![endif]-->
+
+                 =20
+                </td>
+                <td class=3D"ftrLegal" valign=3D"middle" style=3D"direction=
+:ltr;text-align:left;color: #9F6402; font-family: 'Uber Move Text', 'Helvet=
+ica Neue',  Helvetica, Arial, sans-serif; font-size: 16px; font-weight: nor=
+mal; line-height: 20px;">
+                PLN=C2=A00 Delivery Fee
+                </td>
+                </tr>
+              </table>
+            </a>
+          </td>
+          </tr>
+           =20
+
+          <tr>
+          <td style=3D"direction:ltr;text-align: left;padding-top: 3px; pad=
+ding-bottom: 10px; padding-left: 0px; padding-right: 0px">
+         =20
+          <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clicktra=
+ck=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2Fst=
+ore%2Fbrowse%3FstoreUUID%3D0d0ae62a-76ec-47cb-b579-0d3cafe25cd4&amp;_fallba=
+ck_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Frico-gie%25C5%2582do=
+wa%2FDQrmKnbsR8u1eQ08r-Jc1A&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a495=
+-a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D2%26ds_sp=
+%3D0" style=3D"text-decoration: none;">
+          <span class=3D"p2" title=3D"Rico" style=3D"color: #000000; font-f=
+amily: 'Uber Move Text', 'Helvetica Neue', Helvetica, Arial, sans-serif; fo=
+nt-size: 16px; font-weight: normal; line-height: 22px; padding-bottom: 7px;=
+ padding-top: 7px;">
+
+                    <div class=3D"hide414">
+                      Rico<br>
+                    </div>
+                    <div class=3D"show414" style=3D"mso-hide:all;display:no=
+ne;max-height:0px;overflow:hidden;">       =20
+                            <div style=3D"overflow: hidden;
+                            text-overflow: ellipsis;
+                            -webkit-line-clamp: 2;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;">
+
+                             =20
+                                Rico=20
+                               =20
+                             =20
+                            </div>
+                    </div>       =20
+                             =20
+
+          </span>         =20
+
+         =20
+         =20
+
+         =20
+          <div class=3D"ucta_3" style=3D"border-bottom:1px solid #4b4b4b;di=
+splay:inline-block;padding-top:4px;">
+          <div class=3D"ol_ul" style=3D"border-bottom:1px solid #000000;pad=
+ding-bottom:4px;color:#000000;display:inline-block;font-family:'Uber Move T=
+ext','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight=
+:normal;line-height:22px;">
+          Order now
+          </div>
+          </div>
+
+          </a>
+          </td>
+          </tr>
+          </tbody></table>
+      </td>
+      </tr>
+      </tbody>
+      </table>
+  <!--[if (gte mso 9)|(IE)]>
+  </td>
+  </tr>
+  </table>
+  <![endif]-->                     =20
+  <!-- end restaurant -  left -->
+</td>
+
+
+
+    =20
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+  <td style=3D"direction:ltr;text-align:left;padding-left: 12px; padding-ri=
+ght: 12px; padding-top: 10px; padding-bottom: 10px;" valign=3D"top">
+
+  <!-- restaurant -  left -->
+  <!--[if (gte mso 9)|(IE)]>
+  <table width=3D"256" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0">
+  <tr>
+  <td>
+  <![endif]-->
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t6of=
+12 mwidth" align=3D"left" style=3D"border: none; border-collapse: collapse;=
+ border-spacing: 0; max-width: 256px; mso-table-lspace: 0; mso-table-rspace=
+: 0; width: 100%;">
+      <tbody><tr>
+      <td style=3D"direction: ltr; text-align: left; padding-left: 0px; pad=
+ding-right: 0px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+          <tr>
+          <td style=3D"direction:ltr;text-align:left;">
+
+ =20
+ =20
+    <!--[if !mso]><!-- -->
+    <!-- rate  mt_2023/10/09 -->=20
+    <div style=3D"height:15px; min-height:15px;">&nbsp;</div>
+
+    <!-- close  rate -->
+    <!--<![endif]-->
+ =20
+    =20
+
+
+              <a disable-tracking=3Dtrue clicktracking=3D"off" data-msys-cl=
+icktrack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2=
+F%2Fstore%2Fbrowse%3FstoreUUID%3D64056567-47af-40a2-ac54-78d170c3f961&amp;_=
+fallback_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Fkfc-jerozolims=
+kie-184%2FZAVlZ0evQKKsVHjRcMP5YQ&amp;~customer_keyword=3D4e7fdbd7-672b-3144=
+-a495-a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D3%26=
+ds_sp%3D0" style=3D"text-decoration:none;" target=3D"_blank">
+              <table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" style=3D"border: none; border-collapse: collapse; mso-table-lspac=
+e: 0; mso-table-rspace: 0; width: 100%;">
+              <tbody><tr>
+              <td class=3D"" align=3D"left" style=3D"direction:ltr;text-ali=
+gn:left;border-radius: 10px;">
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border: none; border-collapse: collapse; mso-table-lspace: 0; mso-table=
+-rspace: 0; width: 100%;" class=3D"">
+              <tbody><tr>
+              <td valign=3D"top" width=3D"256" height=3D"205" background=3D=
+"https://tb-static.uber.com/prod/image-proc/processed_images/26beee355d599b=
+50fd80bc204d018002/c67d558c633281f9c71fc6a90ef470ae.jpeg" style=3D"directio=
+n:ltr;text-align:left;background-image:url('https://tb-static.uber.com/prod=
+/image-proc/processed_images/26beee355d599b50fd80bc204d018002/c67d558c63328=
+1f9c71fc6a90ef470ae.jpeg'); border-radius: 10px; line-height: 1px; font-siz=
+e: 1px; background-size:cover; background-position: center center; height:a=
+uto; background-repeat: no-repeat; background-color: #ffffff;">
+
+
+             =20
+              <img src=3D"https://tb-static.uber.com/prod/crm/email/2024/04=
+/mt_p13n/spacer_256x205.png" width=3D"256" height=3D"205" style=3D"display:=
+block; width: 100%; max-width:100%; height:auto;" border=3D"0" alt=3D"space=
+r">
+
+              <!--[if gte mso 9]>
+              </div>                         =20
+              </v:textbox>
+              </v:rect>
+              <![endif]-->
+              </td>
+              </tr>
+              </tbody></table>
+              </td>
+              </tr>
+              </tbody></table>
+              <img src=3D"https://tb-static.uber.com/prod/crm/assets/spacer=
+/transparent-1x1.png" width=3D"1" height=3D"1" style=3D"display:block; widt=
+h:1px;height:1px;max-width: 1px; " border=3D"0" alt=3D"spacer">
+              </a>
+
+          </td>
+          </tr>
+          </tbody>
+          </table>
+      </td>
+      </tr>
+
+      <tr>
+      <td style=3D"direction: ltr; text-align: left; padding-top: 15px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+         =20
+          <tr>
+          <td class=3D"ftrLegal" style=3D"direction:ltr;text-align:left;col=
+or: #000000; font-family: 'Uber Move Text', 'Helvetica Neue',  Helvetica, A=
+rial, sans-serif; font-size: 12px; font-weight: normal; line-height: 20px; =
+padding-top: 0px;">
+            <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clickt=
+rack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2F=
+store%2Fbrowse%3FstoreUUID%3D64056567-47af-40a2-ac54-78d170c3f961&amp;_fall=
+back_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Fkfc-jerozolimskie-=
+184%2FZAVlZ0evQKKsVHjRcMP5YQ&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a49=
+5-a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D3%26ds_s=
+p%3D0" style=3D"text-decoration: none;color: #9F6402">
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"initial" align=3D"left" style=3D"border: none; border-collapse: collaps=
+e; border-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspac=
+e: 0; table-layout: fixed; width: initial;">
+                <tr>
+                <td valign=3D"top" style=3D"direction:ltr;text-align:left;p=
+adding-right: 2px; padding-top:2px;">
+                 =20
+                 =20
+<img src=3D"https://tb-static.uber.com/prod/crm/email/2025/02/tam_u1/v01_lo=
+ck_icon01_2x.png" width=3D"12" height=3D"15" style=3D"display:inline-block;=
+width:12px;height:15px;max-width:12px;outline:none;text-decoration:none;mar=
+gin:-1px;margin-left:1px;padding-right:4px;" border=3D"0" alt=3D"Uber One L=
+ock Icon"><!--[if (gte mso 9)|(IE)]>&nbsp;<![endif]-->
+
+                 =20
+                </td>
+                <td class=3D"ftrLegal" valign=3D"middle" style=3D"direction=
+:ltr;text-align:left;color: #9F6402; font-family: 'Uber Move Text', 'Helvet=
+ica Neue',  Helvetica, Arial, sans-serif; font-size: 16px; font-weight: nor=
+mal; line-height: 20px;">
+                PLN=C2=A00 Delivery Fee
+                </td>
+                </tr>
+              </table>
+            </a>
+          </td>
+          </tr>
+           =20
+
+          <tr>
+          <td style=3D"direction:ltr;text-align: left;padding-top: 3px; pad=
+ding-bottom: 10px; padding-left: 0px; padding-right: 0px">
+          <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clicktra=
+ck=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2Fst=
+ore%2Fbrowse%3FstoreUUID%3D64056567-47af-40a2-ac54-78d170c3f961&amp;_fallba=
+ck_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Fkfc-jerozolimskie-18=
+4%2FZAVlZ0evQKKsVHjRcMP5YQ&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a495-=
+a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D3%26ds_sp%=
+3D0" style=3D"text-decoration: none;">
+          <span class=3D"p2" title=3D"KFC Jerozolimskie 184" style=3D"color=
+: #000000; font-family: 'Uber Move Text', 'Helvetica Neue', Helvetica, Aria=
+l, sans-serif; font-size: 16px; font-weight: normal; line-height: 22px; pad=
+ding-bottom: 7px; padding-top: 7px;">
+
+<div class=3D"hide414">
+  KFC Jerozolimskie 184<br>
+</div>
+<div class=3D"show414" style=3D"mso-hide:all;display:none;max-height:0px;ov=
+erflow:hidden;">       =20
+        <div style=3D"overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;">
+
+         =20
+            KFC Jerozolimskie 184=20
+           =20
+         =20
+        </div>
+</div>
+
+
+          </span>
+
+         =20
+         =20
+         =20
+
+         =20
+          <div class=3D"ucta_3" style=3D"border-bottom:1px solid #4b4b4b;di=
+splay:inline-block;padding-top:4px;">
+          <div class=3D"ol_ul" style=3D"border-bottom:1px solid #000000;pad=
+ding-bottom:4px;color:#000000;display:inline-block;font-family:'Uber Move T=
+ext','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight=
+:normal;line-height:22px;">
+          Order now
+          </div>
+          </div>
+
+          </span>
+          </a>
+          </td>
+          </tr>
+
+          </tbody>
+          </table>
+      </td>
+      </tr>
+      </tbody>
+  </table>
+  <!--[if (gte mso 9)|(IE)]>
+  </td>
+  </tr>
+  </table>
+  <![endif]-->                     =20
+
+  <!-- end restaurant -  left -->
+
+</td></tr>
+          </tbody></table>
+          <!--[if (gte mso 9)|(IE)]>
+        </td>
+    </tr>
+  </table>
+  <![endif]-->                     =20
+  <!-- end restaurant -->
+
+
+<!-- END Row 2 -->
+
+<!-- Begin Row 3 -->
+
+ =20
+ =20
+ =20
+
+
+
+
+
+   =20
+   =20
+
+         =20
+
+
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+ =20
+
+
+  <!-- restaurant -->
+  <!--[if (gte mso 9)|(IE)]>
+  <table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0">
+    <tr>
+        <td>
+          <![endif]-->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+t10of12" align=3D"center" style=3D"Margin: 0 auto; border-collapse: collaps=
+e; max-width: 560px; width: 100%;">
+            <tbody>
+              <tr><td style=3D"direction:ltr;text-align:left;padding-left: =
+12px; padding-right: 12px; padding-top: 10px; padding-bottom: 10px;" valign=
+=3D"top">
+
+  <!-- restaurant -  left -->
+
+  <!--[if (gte mso 9)|(IE)]>
+  <table width=3D"256" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0">
+  <tr>
+  <td>
+  <![endif]-->
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t6of=
+12 mwidth" align=3D"left" style=3D"border: none; border-collapse: collapse;=
+ border-spacing: 0; max-width: 256px; mso-table-lspace: 0; mso-table-rspace=
+: 0; width: 100%;">
+      <tbody><tr>
+      <td style=3D"direction: ltr; text-align: left; padding-left: 0px; pad=
+ding-right: 0px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+          <tr>
+          <td style=3D"direction:ltr;text-align:left;">
+
+        =20
+
+ =20
+    <!--[if !mso]><!-- -->
+    <!-- rate  mt_2023/10/09 -->=20
+    <div style=3D"height:15px; min-height:15px;">&nbsp;</div>
+
+    <!-- close  rate -->
+    <!--<![endif]-->
+ =20
+                     =20
+
+              <a disable-tracking=3Dtrue clicktracking=3D"off" data-msys-cl=
+icktrack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2=
+F%2Fstore%2Fbrowse%3FstoreUUID%3D7adafeb6-b431-5052-b1e1-4d5187f750c7&amp;_=
+fallback_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Framenownia-war=
+szawa%2Fetr-trQxUFKx4U1Rh_dQxw&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a=
+495-a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D4%26ds=
+_sp%3D0" style=3D"text-decoration:none;" target=3D"_blank">
+              <table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" style=3D"border: none; border-collapse: collapse; mso-table-lspac=
+e: 0; mso-table-rspace: 0; width: 100%;">
+              <tbody><tr>
+              <td class=3D"" align=3D"left" style=3D"direction:ltr;text-ali=
+gn:left;border-radius: 10px;">
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border: none; border-collapse: collapse; mso-table-lspace: 0; mso-table=
+-rspace: 0; width: 100%;" class=3D"">
+              <tbody><tr>
+              <td valign=3D"top" width=3D"256" height=3D"205" background=3D=
+"https://tb-static.uber.com/prod/image-proc/processed_images/33c70f270aa9c8=
+b85d3a9d2a0917b4f1/1130cd428ee928d351d26efda1178b20.jpeg" style=3D"directio=
+n:ltr;text-align:left;background-image:url('https://tb-static.uber.com/prod=
+/image-proc/processed_images/33c70f270aa9c8b85d3a9d2a0917b4f1/1130cd428ee92=
+8d351d26efda1178b20.jpeg'); border-radius: 10px; line-height: 1px; font-siz=
+e: 1px; background-size: cover; background-position: center center; height:=
+ auto; background-repeat:no-repeat; background-color: #ffffff;"> =20
+
+
+                         =20
+
+              <img src=3D"https://tb-static.uber.com/prod/crm/email/2024/04=
+/mt_p13n/spacer_256x205.png" width=3D"256" height=3D"205" style=3D"display:=
+block; width: 100%; max-width:100%; height:auto;" border=3D"0" alt=3D"space=
+r">
+
+
+              <!--[if gte mso 9]>
+              </div>
+              </v:textbox>
+              </v:rect>
+              <![endif]-->
+              </td>
+              </tr>
+              </tbody></table>
+              </td>
+              </tr>
+              </tbody>
+              </table>
+
+              <img src=3D"https://tb-static.uber.com/prod/crm/assets/spacer=
+/transparent-1x1.png" width=3D"1" height=3D"1" style=3D"display:block; widt=
+h:1px;height:1px;max-width: 1px; " border=3D"0" alt=3D"spacer">
+              </a>
+
+          </td>
+          </tr>
+          </tbody>
+          </table>
+      </td>
+      </tr>
+
+      <tr>
+      <td style=3D"direction: ltr; text-align: left; padding-top: 15px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+         =20
+          <tr>
+          <td class=3D"ftrLegal" style=3D"direction:ltr;text-align:left;col=
+or: #000000; font-family: 'Uber Move Text', 'Helvetica Neue',  Helvetica, A=
+rial, sans-serif; font-size: 12px; font-weight: normal; line-height: 20px; =
+padding-top: 0px;">
+            <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clickt=
+rack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2F=
+store%2Fbrowse%3FstoreUUID%3D7adafeb6-b431-5052-b1e1-4d5187f750c7&amp;_fall=
+back_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Framenownia-warszaw=
+a%2Fetr-trQxUFKx4U1Rh_dQxw&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a495-=
+a616ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D4%26ds_sp%=
+3D0" style=3D"text-decoration: none;color: #9F6402">   =20
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"initial" align=3D"left" style=3D"border: none; border-collapse: collaps=
+e; border-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspac=
+e: 0; table-layout: fixed; width: initial;">
+                <tr>
+                <td valign=3D"top" style=3D"direction:ltr;text-align:left;p=
+adding-right: 2px; padding-top:2px;">
+                 =20
+                 =20
+<img src=3D"https://tb-static.uber.com/prod/crm/email/2025/02/tam_u1/v01_lo=
+ck_icon01_2x.png" width=3D"12" height=3D"15" style=3D"display:inline-block;=
+width:12px;height:15px;max-width:12px;outline:none;text-decoration:none;mar=
+gin:-1px;margin-left:1px;padding-right:4px;" border=3D"0" alt=3D"Uber One L=
+ock Icon"><!--[if (gte mso 9)|(IE)]>&nbsp;<![endif]-->
+
+                 =20
+                </td>
+                <td class=3D"ftrLegal" valign=3D"middle" style=3D"direction=
+:ltr;text-align:left;color: #9F6402; font-family: 'Uber Move Text', 'Helvet=
+ica Neue',  Helvetica, Arial, sans-serif; font-size: 16px; font-weight: nor=
+mal; line-height: 20px;">
+                PLN=C2=A00 Delivery Fee
+                </td>
+                </tr>
+              </table>
+            </a>
+          </td>
+          </tr>
+           =20
+
+          <tr>
+          <td style=3D"direction:ltr;text-align: left;padding-top: 3px; pad=
+ding-bottom: 10px; padding-left: 0px; padding-right: 0px">
+         =20
+          <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clicktra=
+ck=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2Fst=
+ore%2Fbrowse%3FstoreUUID%3D7adafeb6-b431-5052-b1e1-4d5187f750c7&amp;_fallba=
+ck_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Framenownia-warszawa%=
+2Fetr-trQxUFKx4U1Rh_dQxw&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a495-a6=
+16ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D4%26ds_sp%3D=
+0" style=3D"text-decoration: none;">
+          <span class=3D"p2" title=3D"Ramenownia" style=3D"color: #000000; =
+font-family: 'Uber Move Text', 'Helvetica Neue', Helvetica, Arial, sans-ser=
+if; font-size: 16px; font-weight: normal; line-height: 22px; padding-bottom=
+: 7px; padding-top: 7px;">
+
+                    <div class=3D"hide414">
+                      Ramenownia<br>
+                    </div>
+                    <div class=3D"show414" style=3D"mso-hide:all;display:no=
+ne;max-height:0px;overflow:hidden;">       =20
+                            <div style=3D"overflow: hidden;
+                            text-overflow: ellipsis;
+                            -webkit-line-clamp: 2;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;">
+
+                             =20
+                                Ramenownia=20
+                               =20
+                             =20
+                            </div>
+                    </div>       =20
+                             =20
+
+          </span>         =20
+
+         =20
+         =20
+
+         =20
+          <div class=3D"ucta_3" style=3D"border-bottom:1px solid #4b4b4b;di=
+splay:inline-block;padding-top:4px;">
+          <div class=3D"ol_ul" style=3D"border-bottom:1px solid #000000;pad=
+ding-bottom:4px;color:#000000;display:inline-block;font-family:'Uber Move T=
+ext','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight=
+:normal;line-height:22px;">
+          Order now
+          </div>
+          </div>
+
+          </a>
+          </td>
+          </tr>
+          </tbody></table>
+      </td>
+      </tr>
+      </tbody>
+      </table>
+  <!--[if (gte mso 9)|(IE)]>
+  </td>
+  </tr>
+  </table>
+  <![endif]-->                     =20
+  <!-- end restaurant -  left -->
+</td>
+
+
+
+    =20
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+   =20
+ =20
+
+ =20
+  <td style=3D"direction:ltr;text-align:left;padding-left: 12px; padding-ri=
+ght: 12px; padding-top: 10px; padding-bottom: 10px;" valign=3D"top">
+
+  <!-- restaurant -  left -->
+  <!--[if (gte mso 9)|(IE)]>
+  <table width=3D"256" align=3D"center" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0">
+  <tr>
+  <td>
+  <![endif]-->
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t6of=
+12 mwidth" align=3D"left" style=3D"border: none; border-collapse: collapse;=
+ border-spacing: 0; max-width: 256px; mso-table-lspace: 0; mso-table-rspace=
+: 0; width: 100%;">
+      <tbody><tr>
+      <td style=3D"direction: ltr; text-align: left; padding-left: 0px; pad=
+ding-right: 0px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+          <tr>
+          <td style=3D"direction:ltr;text-align:left;">
+
+ =20
+ =20
+    <!--[if !mso]><!-- -->
+    <!-- rate  mt_2023/10/09 -->=20
+    <div style=3D"height:15px; min-height:15px;">&nbsp;</div>
+
+    <!-- close  rate -->
+    <!--<![endif]-->
+ =20
+    =20
+
+
+              <a disable-tracking=3Dtrue clicktracking=3D"off" data-msys-cl=
+icktrack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2=
+F%2Fstore%2Fbrowse%3FstoreUUID%3D98005936-fb65-4f80-b310-7ae859059f53&amp;_=
+fallback_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Ftadim-doner%2F=
+mABZNvtlT4CzEHroWQWfUw&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a495-a616=
+ea084e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D5%26ds_sp%3D0"=
+ style=3D"text-decoration:none;" target=3D"_blank">
+              <table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" style=3D"border: none; border-collapse: collapse; mso-table-lspac=
+e: 0; mso-table-rspace: 0; width: 100%;">
+              <tbody><tr>
+              <td class=3D"" align=3D"left" style=3D"direction:ltr;text-ali=
+gn:left;border-radius: 10px;">
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border: none; border-collapse: collapse; mso-table-lspace: 0; mso-table=
+-rspace: 0; width: 100%;" class=3D"">
+              <tbody><tr>
+              <td valign=3D"top" width=3D"256" height=3D"205" background=3D=
+"https://cn-geo1.uber.com/image-proc/resize/eats-rfo/format=3Djpeg/height=
+=3D440/width=3D550/srcb64=3DaHR0cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC9pbWF=
+nZS1wcm9jL3Byb2Nlc3NlZF9pbWFnZXMvMjIxNjMzNTJkNWZjM2RlMjkwYmE0MWYyNjhjMmQ4NW=
+QvNTYwYTExZjVkMjZlNGNiODM2ODZmNzgxMGE1ZjVmZTIud2VicA=3D=3D" style=3D"direct=
+ion:ltr;text-align:left;background-image:url('https://cn-geo1.uber.com/imag=
+e-proc/resize/eats-rfo/format=3Djpeg/height=3D440/width=3D550/srcb64=3DaHR0=
+cHM6Ly90Yi1zdGF0aWMudWJlci5jb20vcHJvZC9pbWFnZS1wcm9jL3Byb2Nlc3NlZF9pbWFnZXM=
+vMjIxNjMzNTJkNWZjM2RlMjkwYmE0MWYyNjhjMmQ4NWQvNTYwYTExZjVkMjZlNGNiODM2ODZmNz=
+gxMGE1ZjVmZTIud2VicA=3D=3D'); border-radius: 10px; line-height: 1px; font-s=
+ize: 1px; background-size:cover; background-position: center center; height=
+:auto; background-repeat: no-repeat; background-color: #ffffff;">
+
+
+             =20
+              <img src=3D"https://tb-static.uber.com/prod/crm/email/2024/04=
+/mt_p13n/spacer_256x205.png" width=3D"256" height=3D"205" style=3D"display:=
+block; width: 100%; max-width:100%; height:auto;" border=3D"0" alt=3D"space=
+r">
+
+              <!--[if gte mso 9]>
+              </div>                         =20
+              </v:textbox>
+              </v:rect>
+              <![endif]-->
+              </td>
+              </tr>
+              </tbody></table>
+              </td>
+              </tr>
+              </tbody></table>
+              <img src=3D"https://tb-static.uber.com/prod/crm/assets/spacer=
+/transparent-1x1.png" width=3D"1" height=3D"1" style=3D"display:block; widt=
+h:1px;height:1px;max-width: 1px; " border=3D"0" alt=3D"spacer">
+              </a>
+
+          </td>
+          </tr>
+          </tbody>
+          </table>
+      </td>
+      </tr>
+
+      <tr>
+      <td style=3D"direction: ltr; text-align: left; padding-top: 15px;">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" align=3D"left" style=3D"border: none; border-collapse: collapse; bord=
+er-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspace: 0; t=
+able-layout: fixed; width: 100%;">
+          <tbody>
+
+         =20
+          <tr>
+          <td class=3D"ftrLegal" style=3D"direction:ltr;text-align:left;col=
+or: #000000; font-family: 'Uber Move Text', 'Helvetica Neue',  Helvetica, A=
+rial, sans-serif; font-size: 12px; font-weight: normal; line-height: 20px; =
+padding-top: 0px;">
+            <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clickt=
+rack=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2F=
+store%2Fbrowse%3FstoreUUID%3D98005936-fb65-4f80-b310-7ae859059f53&amp;_fall=
+back_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Ftadim-doner%2FmABZ=
+NvtlT4CzEHroWQWfUw&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a495-a616ea08=
+4e5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D5%26ds_sp%3D0" sty=
+le=3D"text-decoration: none;color: #9F6402">
+              <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"initial" align=3D"left" style=3D"border: none; border-collapse: collaps=
+e; border-spacing: 0; max-width: 100%; mso-table-lspace: 0; mso-table-rspac=
+e: 0; table-layout: fixed; width: initial;">
+                <tr>
+                <td valign=3D"top" style=3D"direction:ltr;text-align:left;p=
+adding-right: 2px; padding-top:2px;">
+                 =20
+                 =20
+<img src=3D"https://tb-static.uber.com/prod/crm/email/2025/02/tam_u1/v01_lo=
+ck_icon01_2x.png" width=3D"12" height=3D"15" style=3D"display:inline-block;=
+width:12px;height:15px;max-width:12px;outline:none;text-decoration:none;mar=
+gin:-1px;margin-left:1px;padding-right:4px;" border=3D"0" alt=3D"Uber One L=
+ock Icon"><!--[if (gte mso 9)|(IE)]>&nbsp;<![endif]-->
+
+                 =20
+                </td>
+                <td class=3D"ftrLegal" valign=3D"middle" style=3D"direction=
+:ltr;text-align:left;color: #9F6402; font-family: 'Uber Move Text', 'Helvet=
+ica Neue',  Helvetica, Arial, sans-serif; font-size: 16px; font-weight: nor=
+mal; line-height: 20px;">
+                PLN=C2=A00 Delivery Fee
+                </td>
+                </tr>
+              </table>
+            </a>
+          </td>
+          </tr>
+           =20
+
+          <tr>
+          <td style=3D"direction:ltr;text-align: left;padding-top: 3px; pad=
+ding-bottom: 10px; padding-left: 0px; padding-right: 0px">
+          <a disable-tracking=3Dtrue clicktracking=3Doff data-msys-clicktra=
+ck=3D"0" href=3D"https://eats.sng.link/A99vk/mi87?_dl=3Dubereats%3A%2F%2Fst=
+ore%2Fbrowse%3FstoreUUID%3D98005936-fb65-4f80-b310-7ae859059f53&amp;_fallba=
+ck_redirect=3Dhttps%3A%2F%2Fwww.ubereats.com%2Fstore%2Ftadim-doner%2FmABZNv=
+tlT4CzEHroWQWfUw&amp;~customer_keyword=3D4e7fdbd7-672b-3144-a495-a616ea084e=
+5f&amp;_forward_params=3D1&amp;custom_fields=3Dds_mp%3D5%26ds_sp%3D0" style=
+=3D"text-decoration: none;">
+          <span class=3D"p2" title=3D"Tadim D=C3=B6ner" style=3D"color: #00=
+0000; font-family: 'Uber Move Text', 'Helvetica Neue', Helvetica, Arial, sa=
+ns-serif; font-size: 16px; font-weight: normal; line-height: 22px; padding-=
+bottom: 7px; padding-top: 7px;">
+
+<div class=3D"hide414">
+  Tadim D=C3=B6ner<br>
+</div>
+<div class=3D"show414" style=3D"mso-hide:all;display:none;max-height:0px;ov=
+erflow:hidden;">       =20
+        <div style=3D"overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;">
+
+         =20
+            Tadim D=C3=B6ner=20
+           =20
+         =20
+        </div>
+</div>
+
+
+          </span>
+
+         =20
+         =20
+         =20
+
+         =20
+          <div class=3D"ucta_3" style=3D"border-bottom:1px solid #4b4b4b;di=
+splay:inline-block;padding-top:4px;">
+          <div class=3D"ol_ul" style=3D"border-bottom:1px solid #000000;pad=
+ding-bottom:4px;color:#000000;display:inline-block;font-family:'Uber Move T=
+ext','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;font-weight=
+:normal;line-height:22px;">
+          Order now
+          </div>
+          </div>
+
+          </span>
+          </a>
+          </td>
+          </tr>
+
+          </tbody>
+          </table>
+      </td>
+      </tr>
+      </tbody>
+  </table>
+  <!--[if (gte mso 9)|(IE)]>
+  </td>
+  </tr>
+  </table>
+  <![endif]-->                     =20
+
+  <!-- end restaurant -  left -->
+
+</td></tr>
+          </tbody></table>
+          <!--[if (gte mso 9)|(IE)]>
+        </td>
+    </tr>
+  </table>
+  <![endif]-->                     =20
+  <!-- end restaurant -->
+
+
+<!-- END Row 3 --></td>
+</tr>
+</table><!-- Secondary Buton aka ghost_button v3  cf_2024/03/28 -->=20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  =20
+  =20
+  =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  =20
+  =20
+  =20
+  =20
+  =20
+
+
+
+
+
+
+
+  =20
+
+
+
+
+  =20
+  =20
+           =20
+  =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border-collapse: collapse; width: 100%;" data-blockuuid=3D"72f2bb2a-83=
+89-4445-8b11-09c6189e8873">
+   <tbody>
+
+
+      <tr>
+      <td class=3D"outsidegutter" align=3D"left" style=3D"direction:ltr;tex=
+t-align:left;padding: 0 14px 0 14px; padding-top: 0px; padding-bottom: 43px=
+; background-color:#ffffff;">
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"b=
+order-collapse: collapse; width: 100%;">
+            <tbody><tr>
+               <td style=3D"direction:ltr;text-align:left;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+   <tr>
+      <td>
+         <![endif]-->
+         <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t=
+10of12" align=3D"center" style=3D"Margin: 0 auto; border-collapse: collapse=
+; max-width: 560px; width: 100%;">
+            <tbody><tr>
+               <td style=3D"direction:ltr;text-align:left;padding-left: 12p=
+x; padding-right: 12px;">
+                  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" w=
+idth=3D"100%" align=3D"left" style=3D"border-collapse: collapse; table-layo=
+ut: fixed; width: 100%;">
+<tbody><tr>
+<td style=3D"direction:ltr;padding-top: 0px; padding-bottom: 0px;" align=3D=
+"center">
+
+
+
+
+
+<div class=3D"ucta_2" style=3D"border-color:#4b4b4b;border-radius:9px;borde=
+r-width:1px;border-style:solid; mso-border-style-alt:none;display:inline-bl=
+ock;">
+<a href=3D"https://email.mgm.uber.com/c/eJyMkj9z5CgQxT8NypgSfzUKFMydPOEFYzu=
+mGmjGOgsxBmSXN9jPvsV6y-HWRF08-seDfviJKWU563Biw8DVICWTXcgpGoywrNNuMRPZt3JwKX=
+YvEz8yCVYCl9Kq0LsBFYbeK--cOmo5dsskcQje-oHqgVsqmJQU5KgoaKYR-qNEFYjsm8Hh--R1e=
+qn1Vog4EX4m_IxQy6Fs18O6bK-En0_j-N5q_LEmIs7Gr0TMjW6NhKvGqUYqfnZQ8ZryJw2Ivu19=
+K0-fN2zCfHl4fDo9X07_PT0Srk1I-QOyNzfIEAsRM2tqibX1i1kQrm-Q64aZiNnl2NZu8UTMdk3=
+OKO567xijCDpQ6TRQ8FxREMprRD70TjekuO2LN9c1WVgNGozm-Z-LvH7gG-ShqjKGrYAdX3rC9W=
+7A1SVt5reV6N2ouQt0tD1Q6ZWlYKWk2rmjDyjtoNu19xqNS1vFrRIx3xUG1z_dXmqKmM0rfn6k7=
+O9EuwjLdkG33Bbc6kTEvwU9VKT_g8dy0I7IfnFr2n1LmYiHLmIpcEXTRjtFyK9Yl-36Le_74u_6=
+QV2e_mbV1emeeXUV422F-sf4niC7msxeMH8RjjEUAJ76gJpK5o4UNGrqfT8cQ2AcGOv2bXnb0dz=
+7sveJ_woAAP__jiEdpA" style=3D"border:1px solid #000000;border-radius:8px;fo=
+nt-family:'Uber Move Text','Helvetica Neue',Helvetica,Arial,sans-serif;font=
+-weight:700;font-size:16px;line-height:22px;color:#000000;padding:10px 16px=
+;display:inline-block;text-decoration:none;">Explore more</a>
+</div>
+
+
+
+</td>
+</tr>
+                  </tbody></table>
+               </td>
+            </tr>
+         </tbody></table>
+         <!--[if (gte mso 9)|(IE)]>
+      </td>
+   </tr>
+</table>
+<![endif]-->
+
+               </td>
+            </tr>
+         </tbody></table>
+      </td>
+   </tr>
+</tbody></table>
+<!-- close  ghost_button -->
+
+
+
+
+
+
+
+
+
+
+
+<div data-blockuuid=3D"05192456-6444-4504-89be-c2d8638acb90">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+   =20
+ =20
+
+ =20
+ =20
+   =20
+ =20
+
+ =20
+ =20
+
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+   =20
+ =20
+ =20
+   =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   =20
+   =20
+
+
+
+
+
+
+
+  =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+
+
+
+
+
+
+
+
+
+
+ =20
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+ =20
+ =20
+ =20
+
+
+
+
+
+
+ =20
+ =20
+ =20
+ =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  =20
+   =20
+
+
+
+
+
+   =20
+ =20
+   =20
+   =20
+   =20
+   =20
+ =20
+
+
+
+
+
+
+
+ =20
+
+
+ =20
+
+
+
+
+
+
+
+
+
+
+
+  =20
+  =20
+  =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center" bg=
+color=3D"#ffffff" role=3D"presentation" data-blockuuid=3D"b01b941b-d918-41f=
+e-85bc-c02f6a1828f5">
+
+
+
+
+  <tr>
+    <td style=3D"font-size:1px;line-height:1px;vertical-align:top;width:700=
+px;max-width:100%;" valign=3D"top" align=3D"center">
+    <!--[if (gte mso 9)|(IE)]>
+    <table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0=
+" role=3D"presentation" style=3D"width:700px;background-color:#ffffff;">
+    <tr>
+    <td style=3D"font-size:1px;line-height:1px;" align=3D"center">
+    <![endif]-->
+   =20
+   =20
+   =20
+   =20
+
+
+
+
+
+
+  =20
+    <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width:=
+ 100%;" class=3D"">
+
+       =20
+       =20
+
+      =20
+         <tr>
+<td style=3D"direction:ltr;text-align:left;text-align:center; padding-botto=
+m:0px ">
+   <div class=3D"hide414">
+  =20
+   <img src=3D"https://tb-static.uber.com/prod/crm/email/2024/09/cf_eaterdi=
+gest/em01_version03_animation02_d_2x.gif" width=3D"700" height=3D"" style=
+=3D"-ms-interpolation-mode: bicubic; clear: both; display: block; height: a=
+uto; max-width: 700px; outline: none; text-decoration: none; width: 100%;  =
+color:#000000;margin: 0 auto" border=3D"0" alt=3D"footer graphic"> =20
+   </div>
+   <!--[if !mso 9]><!--><div class=3D"show414" style=3D"mso-hide:all;displa=
+y:none;max-height:0px;overflow:hidden; padding:0;">
+  =20
+   <img src=3D"https://tb-static.uber.com/prod/crm/email/2024/09/cf_eaterdi=
+gest/em01_version03_animation02_d_2x.gif" width=3D"414" height=3D"" style=
+=3D"-ms-interpolation-mode: bicubic; clear: both; display: block; height: a=
+uto; max-width: 430px; outline: none; text-decoration: none; width: 100%;  =
+color:#000000;margin: 0 auto" border=3D"0" alt=3D"footer graphic"> =20
+   </div><!--<![endif]-->
+</td>   =20
+</tr>     =20
+     =20
+
+
+    </table>
+  =20
+
+      <!--[if (gte mso 9)|(IE)]>
+      </td>
+      </tr>
+      </table>
+      <![endif]-->
+    </td>
+  </tr>
+
+</table>
+
+
+
+
+
+<div data-blockuuid=3D"d5e7be2b-490d-4300-b2b5-3d949842fb6c">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   =20
+ =20
+
+
+
+ =20
+   =20
+   =20
+
+
+
+
+
+
+ =20
+   =20
+ =20
+
+ =20
+   =20
+ =20
+
+
+
+
+
+
+ =20
+ =20
+   =20
+ =20
+
+ =20
+
+
+
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+<!-- END LIST-->
+</td>
+</tr>
+<!-- END BODY-->
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+   =20
+   =20
+   =20
+
+
+
+
+
+ =20
+   =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+ =20
+
+  =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+   =20
+   =20
+   =20
+   =20
+   =20
+
+ =20
+
+
+ =20
+
+ =20
+ =20
+ =20
+ =20
+
+  =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+   =20
+   =20
+   =20
+   =20
+   =20
+ =20
+
+
+ =20
+
+ =20
+ =20
+ =20
+ =20
+
+  =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+   =20
+   =20
+   =20
+   =20
+   =20
+ =20
+
+
+ =20
+
+ =20
+ =20
+ =20
+ =20
+
+  =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+   =20
+   =20
+   =20
+   =20
+   =20
+ =20
+
+
+
+
+ =20
+ =20
+ =20
+ =20
+
+ =20
+ =20
+   =20
+ =20
+ =20
+
+ =20
+   =20
+   =20
+ =20
+
+ =20
+
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- footer update 07/13/2022 MT -->
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"background-color: #000000; width: 100%;" data-blockuuid=3D"8b988218-e7=
+3a-43f5-b54e-973386633a1f">
+<tr>
+<td class=3D"outsidegutter" align=3D"left" style=3D"direction:ltr;text-alig=
+n:left; padding-top: 30px">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"width: 100=
+%;" class=3D"">
+
+
+
+
+<!-- Top half -->
+
+
+<tr>
+<td style=3D"direction:ltr;text-align:left;padding: 0px 14px 20px 14px;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td>
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t10of12" a=
+lign=3D"center" style=3D"Margin: 0 auto; max-width: 560px; width: 100%;">
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"direction: rtl; table-layout: fixed; width: 100%;">
+<tr>
+<td class=3D"ignoreTd" style=3D"font-size:0; text-align: left;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t6of12" st=
+yle=3D"direction: ltr; display: inline-block; max-width: 560px; vertical-al=
+ign: top; width: 100%;">
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"table-layout: fixed; width: 100%;">
+<tr>
+<td>
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"468" align=3D"left" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0">
+<tr>
+<td width=3D"168">
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t3of12" al=
+ign=3D"left" style=3D"max-width: 168px; width: 100%;">
+<tr>
+<td style=3D"direction:ltr;text-align:left;padding: 0 12px;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"table-layout: fixed; width: 100%;">
+
+
+
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr>
+<td class=3D"white" style=3D"color:#ffffff; font-family: 'Uber Move Text', =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; line-heigh=
+t: 18px; padding: 3px 0px; direction: ltr; text-align: left;">
+<a href=3D"https://email.mgm.uber.com/c/eJyMj0Gu1DAMhk_T7DxKUsfpLLJAiDkAFxg=
+5sfMm0E5LmyJxe_QAzRK9lSVbn7__l-RCyN4ZTS5GHyKiQ1P3dbnrwm1OZ9Z9QPs-LmVdzCPRtW=
+BBEmHPPihr0DAFF0mUqk7RtIQaq2SJQNFnGB0iMF4DMDlSthNqqAPad8Hl9XlOj963Yxg_Df42-=
+NtD5-11HfxNuet-mIXb86uWtjV99jSMnw8V7grfWPS4UBnQtjKvp_zBxi9m0ePgN733X5umhffv=
+2tvz7bU-zyYfCmz29D-V6Wm05Uq-VLhmy4ASMnBGBCplkqqYIznTddlm7v_EwRcrxTlQpgpYiIH=
+FB-AxCKn6aAuZvt7PQ_e_RHFOR2YBqUqArkzApAQiNk61Os_OmfPZfpx6_2izn8n_DgAA__-Vu6=
+G9" style=3D"color: #ffffff; text-decoration: none;">Help Center</a>
+</td>
+</tr>
+
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr>
+<td class=3D"white" style=3D"color:#ffffff; font-family: 'Uber Move Text', =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; line-heigh=
+t: 18px; padding: 3px 0px; direction: ltr; text-align: left;">
+<a href=3D"https://email.mgm.uber.com/c/eJyMj0GuEzEMhk8z2blKHCdpF1kgRA_ABSo=
+ndvoCM22ZyVBxe_QAdYneypKtz9__S3YhFHRGs0sJQyJyZNp6Xy66cJ_zXnSdyL6PQ70v5i07RD=
+41tCmitJZSlFCLp4TJM4on0zNpalIkQUxYwDsiYDoF4Oiisj2ShjaRfRccXp_n_DbGY5v8pwnPE=
+56fz-frOOF51ivPE57Nwv32VWt_dL2NPPnPmwoPhW8suh1incj2Ot93-QP6L2bRbeOrXsavh-aF=
+1-86-u36Wu97lw8lNmv-n8qM7G09RawNTsUykIQCXIgg1nqUplRSdGbo8ph5_BMHrFaqc6AcG1C=
+NDCwYgH2QqIrJ1mjG_bJvuv4lqnPqmQWkaQRy9QgcNYKITcfWHLJzZr_1H7tePtrsZ8bfAQAA__=
+8fSaDD" style=3D"color: #ffffff; text-decoration: none;">Terms</a>
+</td>
+</tr>
+
+
+ =20
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ =20
+   =20
+   =20
+ =20
+
+
+<tr>
+<td class=3D"white" style=3D"color:#ffffff; font-family: 'Uber Move Text', =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; line-heigh=
+t: 18px; padding: 3px 0px; direction: ltr; text-align: left;">
+<a href=3D"https://email.mgm.uber.com/c/eJyMVMmSok4ffBq8MUGtwMGDCqgzareiiF4=
+6akMRRaBY1Kf_QmaJ7_SPviRUZdYvyQiy5BAQwiEYqCGwbUhsjAEeJNX99qVuLL0OG64qA1vvxw=
+9xvw3OQ5DY1IXAwZaVcExt5UgMbeVCThGVDhqkQ6zsRHJpm9SG3EQAY5Nhl5iMAqqY5WBFEgNbb=
+4Mf_yZfh-e6LrSBRgYMDBh0XfePNGDQ5LrhWlQpV28eBTelNTupr6ZJpYG8b3lCKu55rfL6K5Uq=
+r9MkVZWBPGQJl0KRmC63mIkl4SbjGJtUCEcmCnObgvdZA3kGJGT8FyB0sEuIAsRESjkmxoCbPJH=
+CxIgiblsuENTphW-Y9G_vTKZitf67T7w_QM8G8uR-7tvw8iYDHbf3_XQ8daMTjrzw8_maSzmV7D=
+onetE69YWsCxYlrxnKl_H0wm4ysCaJM3Enh8JNPryT-wuUXBMUb9wufFHup3CyeSkaTDZNu3_46=
+7ZbiHL2mvlo0XXpaOwHi12lPSz1abcq3x8x7nav8-Yw8jfj62n-bA5cTsgubBcfwXhKwiJPnCxD=
+uyxrlocDd_pU4-PTLZfgnDb9ajEnyzhrfI2UxpP9c7tfy1XVuM5JET29bpafrFoGZ70SrVv3wVm=
+RbzMCcq4rES1KMSUVivpZy82jXDSt1vZMKnHZ344Hvmsfn_5nMHdlt4XX1ZjNrrZCWdv1s_zi54=
+lfozXCZbD6WdXeAfX7XbY6er_aMi634MUPD09ni1fvUcjbvJeEQfZpxzvn1q-2p6iZBykFXP3WT=
+SbHzeqn5a3qZSZHvUY1XeWlLJn2gnuPG9lTD2-GQlZX0SFMXp7kZxTXdAX4ykUPMvKXcbm07Ofc=
+eeoZAqOt9bL5JeZe_HEN6Xoc4Wjz23X2MTsuwnw0jaOP_t8KduOnf5lHm8evcey3I6eahvY8o8m=
+hE7RY747HLm2jQ9VrPx5nsV07n-XYvh_jNlvmzSQ_np0kHO2PBexsgUKVRG1vhcD2pJvMgAR5gx=
+tL840SaZGqvB4aaKKVZLUyL0wq_YMKA1upuN4b2RcW-YO_Ba2fhRreWJWpOs1Pg__v7bduikE1_=
+C-rQT38Tn8HtboVV1b_MSZQWFIAYCpGExMLykwmITEZIpIqBW1L0EF9_2q0qn6fEAAoxJg0ZaKo=
+iYFwTEYVNaW0bCdJAGQADJo8LRv19d1k7RD-LwAA___94bKp" style=3D"color: #ffffff; =
+text-decoration: none;">Unsubscribe</a>
+</td>
+</tr>
+
+ =20
+
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+
+<td width=3D"300" valign=3D"top" style=3D"vertical-align: top;">
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t3of12" al=
+ign=3D"left" style=3D"max-width: 300px; width: 100%;">
+<tr>
+<td style=3D"direction:ltr;text-align:left;padding: 0 12px;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"table-layout: fixed; width: 100%;">
+
+
+
+ =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr>
+<td class=3D"white" style=3D"color:#ffffff; font-family: 'Uber Move Text', =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; line-heigh=
+t: 18px; padding: 3px 0px; direction: ltr; text-align: left;">
+<a href=3D"https://email.mgm.uber.com/c/eJyMj0Fu3DAMRU9j7TiQZEqyF1oURecAvcC=
+AIqlE7Xjs2nKA3L5IW8yyyIoAwcf3v2QXQvHOaHYp-ZAQHZq6r8tNF2r3fBbdB7Qf48LrYl5zHF=
+NhTTIRy2Tr7OYSakpYPQW1VkzLqKlKkQQx-QKjQwTCOQBFF5XshBrqgPZDcHl-vufX3rdjGL8M_=
+jr467a3N-L358Hgr2ah9viu3Lamj56H8euhQl3hB4kel8gD2sb39ZQ_wPjNLHoc9KK3_r5pXmj_=
+qb09Xp7r82zyqbRmz_9TmZ5Hy3P0XGEulgAlFKCCCJF5kqpYUnSm67Ldqf8TB89W2DlQihWQIwG=
+JD0BjkKjqk-Vo-no7D93_EuycjkQCUjUCOp6AokYQsWmq1XlyzpyP9uvU22ebvWX_OwAA__9YV6=
+CG" style=3D"color: #ffffff; text-decoration: none;">Privacy</a>
+</td>
+</tr>
+
+ =20
+  =20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr>
+<td class=3D"white" style=3D"color:#ffffff; font-family: 'Uber Move Text', =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; line-heigh=
+t: 18px; padding: 3px 0px; direction: ltr; text-align: left;">
+<a href=3D"https://email.mgm.uber.com/c/eJyMj0Gu3CAMhk8TdoyAGEgWLKqqc4BeYGR=
+s8x7tkEwTqNTbV6-tZlnNypLlz9__c7LeZ2eVJBuj8xHAgirH3m7SsN7TyHJMYD7Ghfam3pOHYs=
+wqPlBGiMBiivdmNstqYpiXomoCiYUzRx2iy3q2ABph9RqDDYJmAfFlAvMhuDw_39N7749zmj9N7=
+jq5KxLtY-vn82JyV9pbG1sl7HXfVMO6fRWqjypbT9P8-RTGLvobspyXQBOYSvd98B96_qKanCe-=
+ya3_ekhqeHyXXre353qMyi9lV0f6n0r1NBtag6Oi12xQA_usMQPoQLRwEcgxWNWlPe7Y_4m9I8N=
+krRYMRQMF1MjOa5w9BxEXDQXV99s45fhLkLUyI7LmIkGDpUVjkKCZTVxKsQ6tVWOrP4bcXm32M7=
+nfAQAA__99h6Vq" style=3D"color: #ffffff; text-decoration: none;">Email Pref=
+erences</a>
+</td>
+</tr>
+=20
+
+
+
+
+
+
+
+
+
+
+
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+
+
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+<!-- END top half -->
+
+
+<!-- bottom half -->
+<tr>
+<td style=3D"direction:ltr;text-align:left; padding: 0px 14px 30px 14px;">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">
+<tr>
+<td width=3D"560">
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t10of12" a=
+lign=3D"center" style=3D"Margin: 0 auto; max-width: 560px; width: 100%;">
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"direction: rtl; table-layout: fixed; width: 100%;">
+<tr>
+<td style=3D"font-size:0; text-align: left">
+<!--[if (gte mso 9)|(IE)]>
+<table width=3D"560" align=3D"left" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0">
+<tr>
+<td width=3D"224">
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t4of12" st=
+yle=3D"direction: ltr; display: inline-block; max-width: 224px; vertical-al=
+ign: bottom; width: 100%;">
+<tr>
+<td style=3D"direction:ltr;text-align:left;padding:10px 12px 0 12px;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"  align=3D"left" sty=
+le=3D"table-layout: fixed;">
+<tr>
+<td style=3D"direction:ltr;text-align:left;">
+
+<!-- social table -->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" alig=
+n=3D"left" style=3D"table-layout: fixed; width: 130px;">
+<tr>
+<td width=3D"43" align=3D"center" style=3D"direction: ltr; text-align: left=
+;">
+<a href=3D"https://email.mgm.uber.com/c/eJyMj02O2zAMhU9j7Rjoh6LthRZF0RygFwg=
+okZpRJ45TW27Q2xeZFrMsZkWA4OP3PUkuxuyd0eTG0ccR0aGp27pcdOF2TUfWbUD7HKeyLuY1CW=
+KtU_ZzjSH6ebaBuNDMyBrIxmBaQh2rZBmBRp8hOERgnCMwOVK2E2qsA9on4PTx-Zpee7_vQ_gy-=
+PPgz4_H41S5aF7Xt-fB4M_vMv5sFm6371ravemtpyF83VW4K_xg0f1EZUDbynU95D0XvplF951f=
+9NJ_3zUtvL1pb7eXj_VxNPmUtNnS_1Cmp2DLTL5UmLNlQIkZOCMClTJJVcwjOdN1uV-5_wNHX6w=
+U50CZKmAhBhYfgUMUUvWjLWT6ejl23f4minMamAWkKgG6MgGTEojYcarVeXbOHLf289DLZ5v9Sv=
+5PAAAA__97q6IE"> <img src=3D"https://tb-static.uber.com/prod/crm/assets/ico=
+ns/social_darkmode/social_icons_071522/social-icon-facebook-black.png" widt=
+h=3D"32" height=3D"32" border=3D"0" style=3D"display: block; height: auto; =
+max-height: 32px; max-width: 32px; width: 100%;">
+</a>
+</td>
+<td width=3D"43" align=3D"center" style=3D"direction: ltr; text-align: left=
+;">
+<a href=3D"https://email.mgm.uber.com/c/eJyMj8GO1DAMhp-muXkUp27SHnJAiHkAJM4=
+jx3Z2A9OZoU1BvD1aFu1xtSdLtj5__68Zp6kEdJYxpTAlIiRXt_t6sZXbNR_FtoH8yzjJfXXPeS=
+7CtJAajSFyDEkYkeuSZl_LIupaJktViyaIKRQYkQiYlgk4YjT2M9lUB_IvgtPb52t-7v2xD-OnI=
+ZyHcO6_W--vtyGcvxXb3Mrt9tWkPZrdeh7Gz7spd4PvrLafogzkm1zvh_6Dxi9utX3nJ7v0Pw_L=
+K28_rLfb09v6OJp-KKzb8nsq1_PoZYlBKizFM5BOBbgQQRSZtRqVFNF1Wx9X7v_FUxCvggjGsQJ=
+JZGANE_A4aTQLyUt0_X45dtteCUG0kVlBq0UglBk4WgRVn-ZaMTCiO27t52GXjzb7lcPfAAAA__=
+_EX6BF"> <img src=3D"https://tb-static.uber.com/prod/crm/assets/icons/socia=
+l_darkmode/social_icons_071522/social-icon-twitter-black.png" width=3D"32" =
+height=3D"32" border=3D"0" style=3D"display: block; height: auto; max-heigh=
+t: 32px; max-width: 32px; width: 100%;">
+</a>
+</td>
+<td width=3D"43" align=3D"center" style=3D"direction: ltr; text-align: left=
+;">
+<a href=3D"https://email.mgm.uber.com/c/eJyMj0GO2zoMhk9j7RhIMkXZCy0eHpoD9AI=
+BJVIZtbGT2nKD3r7ItJhlMSsCBH9-3y_JhZC9M5pcjD5ERIembvflogu3WzqybgPa1ziV-2LeEp=
+HnXFiQVcc8e7FzRZIpixTyGk1LqLFKlggUfYbRIQLjHIDJkbKdUEMd0L4Ap4_Pt_TW-2Mfxv8Gf=
+x78-fl8ntq6d75uvLwuBn9-t_Fns3Bbv2ppj6ZrT8P4_67CXeEbi-4nKgPaVm73Q95z4xez6L7z=
+VS_910PTwtt37W29fqyPo8mnrM2W_oUyPY22zORLhTlbBpSQgTMiUCmTVMUcyZmuy-PG_S84-GK=
+lOAfKVAELMbD4ADwGIVUfbSHT75dj1-1PojinI7OAVCVAVyZgUgIRG6danWfnzLG2H4dePtvsZ_=
+K_AwAA__-3t6PW"> <img src=3D"https://tb-static.uber.com/prod/crm/assets/ico=
+ns/social_darkmode/social_icons_071522/social-icon-instagram-black.png" wid=
+th=3D"32" height=3D"32" border=3D"0" style=3D"display: block; height: auto;=
+ max-height: 32px; max-width: 32px; width: 100%;">
+</a>
+</td>
+</tr>
+</table>
+<!-- END social table -->
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+<td width=3D"336">
+<![endif]-->
+
+
+ =20
+ =20
+ =20
+
+ =20
+
+
+ =20
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"t6of12" =
+style=3D"direction: ltr; display: inline-block; max-width: 336px; vertical-=
+align: top; width: 100%;">
+  <tr>
+  <td style=3D"direction:ltr;text-align:left;padding: 12px 12px 0 12px">
+  <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" al=
+ign=3D"left" style=3D"table-layout: fixed; width: 100%;">
+  <tr>
+  <td style=3D"direction:ltr;text-align:left;color: #e5e5e5; font-family: '=
+Uber Move Text', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:=
+ 10px; line-height: 18px;">
+
+
+  <!-- Legal Disclaimer -->
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+ =20
+ =20
+ =20
+
+ =20
+ =20
+
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+ =20
+   =20
+   =20
+     =20
+        Images or text may have been created or edited with AI.
+     =20
+   =20
+
+   =20
+
+   =20
+
+   =20
+
+   =20
+
+   =20
+
+   =20
+
+   =20
+
+   =20
+
+   =20
+
+   =20
+
+   =20
+
+   =20
+
+<br>
+
+
+<br>
+
+  <!-- Legal Disclaimer -->
+
+ =20
+
+ =20
+
+ =20
+  Uber Eats Poland Sp. z o.o. <br>  Poland, Warsaw, ul. Inflancka 4, 00-189=
+ PL 5252798081 =20
+ =20
+
+
+  <br>
+ =20
+  <a href=3D"https://email.mgm.uber.com/c/eJyMj0GO2zAMRU9j7RiIEkXbCy2KonOAX=
+iCgRWpGbZyktlygty-CFlkOsiJA8v_3v2ZMaQnoLOM4hjQSIbm63dazrdIu-VhsG8g_xqncVveR=
+iU2Vp1k9K5rGGMo8GaVQJsJY2bVMNlZddAQewwIRiUBoTiCMbOInslQH8g_A6el8yR-93_chfhn=
+C2xDenodV2vW7lXZvdu15iF93U-kGP0RtP3EZyLdyuR36-B7iN7favsu7nfufu-VVtp_W2_X9uT=
+6Opi9FdFv-DOV6jr7MHEqFefECpGkBWYiAS5m0Gi0jo-u23i_S_4NTKF4LIphwBSosIBoSSEzKZ=
+mH0hV2_nY_dtn-KgmhRREGrMRCWCYSNQdWPU60YBNEd1_brsPOrzX7n8DcAAP__J5ScMg" styl=
+e=3D"text-decoration: none; color: #e5e5e5">Uber.com</a>
+ =20
+
+ =20
+ =20
+
+
+  </td>
+  </tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+
+
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+<!-- END bottom half -->
+
+
+</table>
+</td>
+</tr>
+</table>
+<!-- close footer update - MT -->
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+
+<img width=3D"1" height=3D"1" alt=3D"" src=3D"https://email.mgm.uber.com/o/=
+eJyMj0uOGzEMRE_T2tEQJUpqL7QKcoFcwKBIaqLE7Xb6EyC3D4wEsxzMigBRVa9KK6bUAjqrWEp=
+IhQjJ9W1dbrbwuNez2TaRf52LrIv7XnWOLcvcY-rR--x1RmypR0lmLWBzo5KVrk0L5BIaRCQCpm=
+sCzpiN_UyW-kT-Bbi8Jy88Ht9MxnPY46hT_LKb8mHwg9X2S5aJ_JD7eupLPcWvbrF95ze7HX-eV=
+hfeftoxHm_v7_Mc-qkmbqsfodxRo5drDtLh2jwDaWrAjQiyyKzdqJWM7rDleefjPzgF8SqIYJw7=
+kGQG1pCAY9JsFoqX7I71du62_XMIokVmBe2WgVBm4GwZVH2Ze8fAiO58jF-n3T677HcNfwMAAP_=
+_ndSUhw"></body></html>
